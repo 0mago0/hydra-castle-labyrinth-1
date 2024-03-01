@@ -1,0 +1,14 @@
+//
+// Created by Yihss on 2024/3/1.
+//
+
+#ifndef REPLACE_WITH_YOUR_PROJECT_NAME_HERO_HPP
+#define REPLACE_WITH_YOUR_PROJECT_NAME_HERO_HPP
+
+
+class hero {
+
+};
+
+
+#endif //REPLACE_WITH_YOUR_PROJECT_NAME_HERO_HPP
