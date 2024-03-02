@@ -4,10 +4,25 @@
 
 #ifndef REPLACE_WITH_YOUR_PROJECT_NAME_HERO_HPP
 #define REPLACE_WITH_YOUR_PROJECT_NAME_HERO_HPP
+#include "Util/GameObject.hpp"
+#include "Util/Image.hpp"
+#include "Util/Animation.hpp"
+#include "Util/Input.hpp"
+#include "Util/Keycode.hpp"
+#include "physics.hpp"
+class hero: public Util::GameObject {
 
+public:
+    void run();
+    void chang_forward();
+    explicit hero(const std::vector<std::string>& ImagePath);
+    [[nodiscard]]  const glm::vec2& GetPosition() const { return m_Transform.translation; }
+    void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
+    void SetImage(const std::vector<std::string>& Path);
 
-class hero {
-
+protected:
+    std::string  hero_state ;
+    std::string forward ;
 };
 
 

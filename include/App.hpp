@@ -1,8 +1,9 @@
 #ifndef APP_HPP
 #define APP_HPP
-
+#include "map.hpp"
+#include "hero.hpp"
 #include "pch.hpp" // IWYU pragma: export
-
+#include "Util/Root.hpp"
 class App {
 public:
     enum class State {
@@ -24,6 +25,10 @@ private:
 
 private:
     State m_CurrentState = State::START;
+    Util::Root m_Root;
+    physics phy ;
+    std::shared_ptr<hero>  m_hero ;
+    std::shared_ptr<map> m_map;
 };
 
 #endif

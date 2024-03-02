@@ -19,6 +19,12 @@ add_executable(${PROJECT_NAME}
     ${SRC_DIR}/main.cpp
     ${SRC_FILES}
     ${HEADER_FILES}
+        src/map.cpp
+        include/map.hpp
+        src/hero.cpp
+        include/hero.hpp
+        src/physics.cpp
+        include/physics.hpp
 )
 
 if(MSVC)
