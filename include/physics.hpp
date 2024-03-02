@@ -1,0 +1,14 @@
+//
+// Created by Yihss on 2024/3/2.
+//
+
+#ifndef REPLACE_WITH_YOUR_PROJECT_NAME_PHYSICS_HPP
+#define REPLACE_WITH_YOUR_PROJECT_NAME_PHYSICS_HPP
+
+
+class physics {
+
+};
+
+
+#endif //REPLACE_WITH_YOUR_PROJECT_NAME_PHYSICS_HPP
