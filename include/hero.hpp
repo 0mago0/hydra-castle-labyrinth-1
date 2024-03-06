@@ -19,9 +19,10 @@ public:
     [[nodiscard]]  const glm::vec2& GetPosition() const { return m_Transform.translation; }
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void SetImage(const std::vector<std::string>& Path);
-
-protected:
     std::string  hero_state ;
+protected:
+    float jump_total = 0 ;
+
     std::string forward ;
 };
 

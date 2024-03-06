@@ -6,11 +6,17 @@
 #define REPLACE_WITH_YOUR_PROJECT_NAME_PHYSICS_HPP
 #include "Util/GameObject.hpp"
 #include "map.hpp"
+#include "Util/Input.hpp"
+#include "Util/Keycode.hpp"
 class physics {
 public:
+
     void in_sky_down();
     void set_data(const std::string& dataPath);
+    std::string get_state();
+    std::vector<std::string> state ;
     std::vector<glm::vec2> object_position ;
+    std::vector<float> jump_total ;
 private :
     int data[16][12];
 };

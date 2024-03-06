@@ -10,15 +10,22 @@ void hero::run() {
         now_XY[0] = now_XY[0] + 4 ;
         this->SetPosition(now_XY) ;
     }
-    if (Util::Input::IsKeyDown(Util::Keycode::SPACE)) {
+    if (Util::Input::IsKeyDown(Util::Keycode::SPACE) && hero_state == "on_ground") {
+        jump_total = 0 ;
+        hero_state = "one_jump" ;
+    }
+     if(Util::Input::IsKeyPressed(Util::Keycode::SPACE) && jump_total <= 130 && hero_state == "one_jump"){
         glm::vec now_XY = this->GetPosition() ;
-        now_XY[1] = now_XY[1] + 30 ;
-        this->SetPosition(now_XY) ;
-    }else if(Util::Input::IsKeyPressed(Util::Keycode::SPACE)){
-        glm::vec now_XY = this->GetPosition() ;
+         jump_total += 10  ;
         now_XY[1] = now_XY[1] + 10 ;
         this->SetPosition(now_XY) ;
+     }else if(jump_total > 130 && hero_state == "one_jump" ){
+         hero_state = "sky_down" ;
+     }
+    if(Util::Input::IsKeyUp(Util::Keycode::SPACE)&& hero_state == "one_jump" ){
+        hero_state = "sky_down" ;
     }
+
     if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
         glm::vec now_XY = this->GetPosition() ;
         now_XY[0] = now_XY[0] - 4 ;
