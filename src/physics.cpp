@@ -31,12 +31,12 @@ void  physics::in_sky_down() {
         x = ceil(x / 60) ;
         Lx = ceil(Lx / 60) ;
         if (data[int(x)][int(yy)] == 1){
-x -= 4.5 ;
+            x -= 4.5 ;
             object_position[i][0] = object_position[i][0] - 4 ;
 
         }
         if (data[int(Lx)][int(yy)] == 1){
-x+= 4.5 ;
+            x+= 4.5 ;
             object_position[i][0] = object_position[i][0] + 4 ;
         }
         x = 8 * 60 + object_position[i][0] - 30 ;
@@ -47,7 +47,7 @@ x+= 4.5 ;
             yy = ceil(yy);
         }
         if (data[int(x)][int(y)] <= 0 && data[int(Lx)][int(y)] <= 0  && state[i] =="sky_down"  ){
-            object_position[i][1] = object_position[i][1] - 0.3 * jump_total[i] ;
+            object_position[i][1] = object_position[i][1] - 0.03 *  (jump_total[i] +2)*  (jump_total[i] +2)* 0.6  ;
             jump_total[i] +=1 ;
         } else if(data[int(x)][int(y)] > 0 && data[int(Lx)][int(y)] > 0 &&  state[i] != "on_ground" ) {
             jump_total.clear();

@@ -16,8 +16,8 @@ void hero::run() {
     }
      if(Util::Input::IsKeyPressed(Util::Keycode::SPACE) && jump_total <= 130 && hero_state == "one_jump"){
         glm::vec now_XY = this->GetPosition() ;
-         jump_total += 10  ;
-        now_XY[1] = now_XY[1] + 10 ;
+         jump_total += 8  ;
+        now_XY[1] = now_XY[1] + 8 ;
         this->SetPosition(now_XY) ;
      }else if(jump_total > 130 && hero_state == "one_jump" ){
          hero_state = "sky_down" ;

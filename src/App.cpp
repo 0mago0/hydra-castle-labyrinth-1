@@ -11,7 +11,9 @@ void App::Start() {
     m_hero->hero_state = "on_ground" ;
     m_Root.AddChild(m_hero);
     phy.set_data("map1.txt");
+
     m_map = std::make_shared<map>("p1.png","map1.txt");
+    m_map->map_number = 1 ;
     m_Root.AddChild(m_map);
     m_CurrentState = State::UPDATE;
 }
@@ -25,10 +27,14 @@ void App::Update() {
     m_hero->hero_state = phy.get_state();
     phy.state.clear() ;
     m_hero->SetPosition(phy.object_position[0]);
+    m_map->hero_position = m_hero->GetPosition() ;
+    m_map->Transitions() ;
+    m_hero->SetPosition(m_map->hero_position) ;
+    phy.set_data("map" + std::to_string(m_map->map_number) + ".txt");
     m_Root.Update() ;
     //m_map.SetImage("p1.png") ;
     //TODO: do your things here and delete this line <3
-    
+
     /*
      * Do not touch the code below as they serve the purpose for
      * closing the window.

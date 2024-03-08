@@ -22,3 +22,15 @@ void map::read_data(const std::string& Path){
         }
     }
 }
+void  map::Transitions() {
+    if(hero_position[0] > 476){
+        hero_position = {-420 , hero_position[1]} ;
+        this->map_number +=1 ;
+        SetImage("p" + std::to_string(map_number) + ".png" ) ;
+    }
+    if(hero_position[0] < -476){
+        hero_position = {420 , hero_position[1]} ;
+        this->map_number -=1 ;
+        SetImage("p" + std::to_string(map_number) + ".png" ) ;
+    }
+}
