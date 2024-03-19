@@ -10,7 +10,7 @@ std::string physics::get_state() {
 }
 void  physics::set_data(const std::string& dataPath){
     std::ifstream inputfile(RESOURCE_DIR"/map_data/" + dataPath);
-    for(int y =0;y<12;y++)
+    for(int y =0;y<13;y++)
     {
         for(int x=0;x<16;x++)
         {
@@ -30,12 +30,14 @@ void physics::collision(int index,float &x , float Lx ,  float yy , float &y){
 
     float  yx = 8 * 60 + object_position[index][0] ;
     float  yLx = 8 * 60 + object_position[index][0] - 30  ;
+    int tempy = floor((6*60 - object_position[index][1]-25) / 60);
+    int butty = floor((6*60 - object_position[index][1]+30) / 60);
     yx = ceil(yx / 60) ;
     yLx = ceil(yLx / 60) ;
-    if (data[int(yx-1)][int(yy-1)] == 1){
+    if (data[int(yx-1)][tempy] == 1 && data[int(yx-1)][butty] == 0 ){
        // y -= 8.5 ;
            object_position[index][1] = object_position[index][1] - 8 ;
-    }else if (data[int(yLx)][int(yy-1)] == 1){
+    }else if (data[int(yLx)][tempy] == 1&& data[int(yx-1)][butty] == 0){
        // y -= 8.5 ;
         object_position[index][1] = object_position[index][1] - 8 ;
     }
@@ -63,7 +65,7 @@ void  physics::in_sky_down() {
         if (data[int(x)][int(y)] <= 0 && data[int(Lx)][int(y)] <= 0  && state[i] =="sky_down"  ){
             object_position[i][1] = object_position[i][1] - 0.03 *  (jump_total[i] +2)*  (jump_total[i] +2)* 0.6  ;
             jump_total[i] +=1 ;
-        } else if(data[int(x)][int(y)] > 0 && data[int(Lx)][int(y)] > 0 &&  state[i] != "on_ground" ) {
+        } else if(data[int(x)][int(y)] > 0 && data[int(Lx)][int(y)] > 0 &&  state[i] != "on_ground" && state[i] != "climb_ladder" ) {
             jump_total.clear();
             object_position[i][1] = 360 - (y) * 60 + 30;
             jump_total[i] = 0 ;
@@ -75,5 +77,16 @@ void  physics::in_sky_down() {
         }
         object_position.clear();
     }
-
+}
+bool physics::climb_ladder(float x , float y){
+    if(data[int(x)][int(y)] == 2){
+        return true ;
+    }
+    return false ;
+}
+bool physics::judge_onground(float x, float y,float topy) {
+    if(data[int(x)][int(y)] == 0 && data[int(x)][int(topy)] == 0){
+        return true ;
+    }
+    return false ;
 }

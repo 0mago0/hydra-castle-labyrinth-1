@@ -16,7 +16,7 @@ void map::read_data(const std::string& Path){
     std::ifstream inputfile(RESOURCE_DIR"/map_data/" + Path);
     for(int y =0;y<16;y++)
     {
-        for(int x=0;x<3;x++)
+        for(int x=0;x<13;x++)
         {
             inputfile >> map_data[y][x];
         }

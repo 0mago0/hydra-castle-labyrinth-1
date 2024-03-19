@@ -14,12 +14,14 @@ public:
     void in_sky_down();
     void set_data(const std::string& dataPath);
     void collision(int index, float &x , float Lx ,  float yy , float &y) ;
+    bool climb_ladder(float x , float y) ;
+    bool judge_onground(float x , float y,float topy) ;
     std::string get_state();
     std::vector<std::string> state ;
     std::vector<glm::vec2> object_position ;
     std::vector<float> jump_total ;
 private :
-    int data[16][12];
+    int data[16][13];
 };
 
 

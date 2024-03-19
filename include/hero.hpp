@@ -10,7 +10,8 @@
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
 #include "physics.hpp"
-class hero: public Util::GameObject {
+#include "map.hpp"
+class hero: public Util::GameObject{
 
 public:
     void run();
@@ -20,6 +21,7 @@ public:
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void SetImage(const std::vector<std::string>& Path);
     std::string  hero_state ;
+    std::string map ;
 protected:
     float jump_total = 0 ;
 
