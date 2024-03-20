@@ -5,36 +5,34 @@
 #include "hero.hpp"
 void hero::run() {
     chang_forward() ;
-    if ((Util::Input::IsKeyPressed(Util::Keycode::S) || Util::Input::IsKeyPressed(Util::Keycode::W)) && hero_state != "sky_down" ) {
-        float  x =floor((8 * 60 + this->GetPosition()[0]) / 60) ;
-        float  y =floor((6*60 - this->GetPosition()[1]+30) / 60)  ;
-        float  topy =floor((6*60 - this->GetPosition()[1]-30) / 60)  ;
-        physics physics ;
-        physics.set_data(map) ;
-        if( (Util::Input::IsKeyPressed(Util::Keycode::S) && physics.climb_ladder(x,y)) ||  (Util::Input::IsKeyPressed(Util::Keycode::W) && physics.climb_ladder(x,topy))){
+    float  x =floor((8 * 60 + this->GetPosition()[0]) / 60) ;
+    float  y =floor((6*60 - this->GetPosition()[1]+30) / 60)  ;
+    float  topy =floor((6*60 - this->GetPosition()[1]-30) / 60)  ;
+    physics physics ;
+    physics.set_data(map) ;
+    if (Util::Input::IsKeyPressed(Util::Keycode::S) && hero_state == "climb_ladder") {
+         if(physics.climb_ladder(x,y)){
+             hero_state = "climb_ladder";
             this->SetPosition({x*60 - 8 * 60 + 30,this->GetPosition()[1]}) ;
-            chang_forward() ;
             glm::vec now_XY = this->GetPosition() ;
-            if(Util::Input::IsKeyPressed(Util::Keycode::S)){
-                now_XY[1] = now_XY[1] - 4 ;
-                this->SetPosition(now_XY) ;
-            }else if (Util::Input::IsKeyPressed(Util::Keycode::W)  ){
-                now_XY[1] = now_XY[1] + 4 ;
-                this->SetPosition(now_XY) ;
-            }
-        }else if((hero_state == "climb_ladder" && physics.climb_ladder(x,topy)) || (hero_state == "climb_ladder" && physics.climb_ladder(x,y))){
-
-            glm::vec now_XY = this->GetPosition() ;
-            if(Util::Input::IsKeyPressed(Util::Keycode::S)){
-                now_XY[1] = now_XY[1] - 4 ;
-                this->SetPosition(now_XY) ;
-            }else if (Util::Input::IsKeyPressed(Util::Keycode::W)){
-                now_XY[1] = now_XY[1] + 4 ;
-                this->SetPosition(now_XY) ;
-            }
-        }else{
+            now_XY[1] = now_XY[1] - 4 ;
+            this->SetPosition(now_XY) ;
+        }
+        if(hero_state == "climb_ladder" && !physics.climb_ladder(x,y) ){
             hero_state = "sky_down" ;
-            std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->Pause() ;
+        }
+    }
+    if (Util::Input::IsKeyPressed(Util::Keycode::W)) {
+        physics.set_data(map);
+        if (physics.climb_ladder(x, abs(topy)) && hero_state == "climb_ladder") {
+            hero_state = "climb_ladder";
+            this->SetPosition({x * 60 - 8 * 60 + 30, this->GetPosition()[1]});
+            glm::vec now_XY = this->GetPosition();
+            now_XY[1] = now_XY[1] + 4;
+            this->SetPosition(now_XY);
+        }
+        if (hero_state == "climb_ladder" && !physics.climb_ladder(x, abs(topy))) {
+           hero_state = "sky_down";
         }
     }
     if (Util::Input::IsKeyPressed(Util::Keycode::A) && hero_state != "climb_ladder" ) {
@@ -100,13 +98,23 @@ void hero::chang_forward(){
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
         temp->Play() ;
     }
-    if (Util::Input::IsKeyDown(Util::Keycode::S) ||  Util::Input::IsKeyDown(Util::Keycode::W) ) {
-        float  x =floor((8 * 60 + this->GetPosition()[0]) / 60) ;
-        float  y =floor((6*60 - this->GetPosition()[1]+30) / 60)  ;
-        float  topy =floor((6*60 - this->GetPosition()[1]-30) / 60)  ;
+    float  x =floor((8 * 60 + this->GetPosition()[0]) / 60) ;
+    float  y =floor((6*60 - this->GetPosition()[1]+30) / 60)  ;
+    float  topy =floor((6*60 - this->GetPosition()[1]-30) / 60)  ;
+    if (Util::Input::IsKeyDown(Util::Keycode::S)  ) {
         physics physics ;
         physics.set_data(map) ;
-        if(physics.climb_ladder(x,y) ){
+        if(physics.climb_ladder(x,y)){
+            hero_state = "climb_ladder";
+            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/climb1.png" ,RESOURCE_DIR"/hero/climb2.png",RESOURCE_DIR"/hero/climb3.png",RESOURCE_DIR"/hero/climb4.png",RESOURCE_DIR"/hero/climb5.png" }) ;
+            auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
+            temp->Play() ;
+        }
+    }
+    if (Util::Input::IsKeyDown(Util::Keycode::W)){
+        physics physics ;
+        physics.set_data(map) ;
+        if(physics.climb_ladder(x,topy)){
             hero_state = "climb_ladder";
             this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/climb1.png" ,RESOURCE_DIR"/hero/climb2.png",RESOURCE_DIR"/hero/climb3.png",RESOURCE_DIR"/hero/climb4.png",RESOURCE_DIR"/hero/climb5.png" }) ;
             auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;

@@ -33,4 +33,14 @@ void  map::Transitions() {
         this->map_number -=1 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;
     }
+    if(hero_position[1] < -360){
+        hero_position = {hero_position[0] ,340 } ;
+        this->map_number +=8 ;
+        SetImage("p" + std::to_string(map_number) + ".png" ) ;
+    }
+    if(hero_position[1] > 360){
+        hero_position = {hero_position[0] ,-340 } ;
+        this->map_number -=8 ;
+        SetImage("p" + std::to_string(map_number) + ".png" ) ;
+    }
 }

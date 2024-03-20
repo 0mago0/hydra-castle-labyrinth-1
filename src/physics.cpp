@@ -65,21 +65,21 @@ void  physics::in_sky_down() {
         if (data[int(x)][int(y)] <= 0 && data[int(Lx)][int(y)] <= 0  && state[i] =="sky_down"  ){
             object_position[i][1] = object_position[i][1] - 0.03 *  (jump_total[i] +2)*  (jump_total[i] +2)* 0.6  ;
             jump_total[i] +=1 ;
-        } else if(data[int(x)][int(y)] > 0 && data[int(Lx)][int(y)] > 0 &&  state[i] != "on_ground" && state[i] != "climb_ladder" ) {
+        } else if(data[int(x)][int(y)] >= 1 && data[int(Lx)][int(y)] >= 1 &&  state[i] != "on_ground" && state[i] != "climb_ladder" ) {
             jump_total.clear();
             object_position[i][1] = 360 - (y) * 60 + 30;
             jump_total[i] = 0 ;
             state[i] = "on_ground" ;
 
-        }else if(data[int(x)][int(yy)] <= 0 && data[int(Lx)][int(yy)] <= 0 && state[i] =="on_ground"){
-            state[i] ="sky_down";
+        }else if(data[int(x)][int(yy)] <= 0 && data[int(Lx)][int(yy)] <= 0 && state[i] =="on_ground" && state[i] != "climb_ladder" ){
+           state[i] ="sky_down";
 
         }
         object_position.clear();
     }
 }
 bool physics::climb_ladder(float x , float y){
-    if(data[int(x)][int(y)] == 2){
+    if(data[int(x)][int(y)] == 2 || data[int(x)][int(y)] == -2){
         return true ;
     }
     return false ;
