@@ -121,6 +121,7 @@ void hero::chang_forward(){
             temp->Play() ;
         }
     }
+
 }
 void hero::SetImage(const std::vector<std::string>& Path) {
     m_Drawable = std::make_shared<Util::Animation>( Path,false,150,true,0);

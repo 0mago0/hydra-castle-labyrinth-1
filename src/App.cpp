@@ -16,6 +16,8 @@ void App::Start() {
     m_map->map_number = 1 ;
     m_Root.AddChild(m_map);
     m_CurrentState = State::UPDATE;
+    m_tool = std::make_shared<heroattack>(std::vector<std::string>{RESOURCE_DIR"/attack_tool/sword1.png",RESOURCE_DIR"/attack_tool/sword2.png",RESOURCE_DIR"/attack_tool/sword3.png",RESOURCE_DIR"/attack_tool/sword4.png",RESOURCE_DIR"/attack_tool/sword5.png"});
+    m_Root.AddChild(m_tool) ;
 }
 
 void App::Update() {
@@ -32,7 +34,12 @@ void App::Update() {
     m_hero->SetPosition(m_map->hero_position) ;
     phy.set_data("map" + std::to_string(m_map->map_number) + ".txt");
     m_hero->map = "map" + std::to_string(m_map->map_number) + ".txt" ;
+    m_tool->SetPosition(m_hero->GetPosition()) ;
+    m_tool->renw_position() ;
+    m_tool->attack() ;
     m_Root.Update() ;
+
+
     //m_map.SetImage("p1.png") ;
     //TODO: do your things here and delete this line <3
 
@@ -44,9 +51,11 @@ void App::Update() {
     Util::Image map(RESOURCE_DIR"/background/p1.png");
     map.Draw({{0,0},0,{2,2}},-10) ;
      */
-
 }
-
+void App::Trans(){
+    m_CurrentState = State::UPDATE ;
+    m_Root.Update() ;
+};
 void App::End() { // NOLINT(this method will mutate members in the future)
     LOG_TRACE("End");
 }

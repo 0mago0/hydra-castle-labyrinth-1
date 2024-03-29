@@ -11,8 +11,8 @@
 #include "Util/Keycode.hpp"
 #include "physics.hpp"
 #include "map.hpp"
+#include "heroattack.hpp"
 class hero: public Util::GameObject{
-
 public:
     void run();
     void chang_forward();

@@ -25,6 +25,8 @@ add_executable(${PROJECT_NAME}
         include/hero.hpp
         src/physics.cpp
         include/physics.hpp
+        include/heroattack.hpp
+        src/heroattack.cpp
 )
 
 if(MSVC)
