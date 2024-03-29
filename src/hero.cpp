@@ -10,6 +10,7 @@ void hero::run() {
     float  topy =floor((6*60 - this->GetPosition()[1]-30) / 60)  ;
     physics physics ;
     physics.set_data(map) ;
+    auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
     if (Util::Input::IsKeyPressed(Util::Keycode::S) && hero_state == "climb_ladder") {
          if(physics.climb_ladder(x,y)){
              hero_state = "climb_ladder";
@@ -35,12 +36,12 @@ void hero::run() {
            hero_state = "sky_down";
         }
     }
-    if (Util::Input::IsKeyPressed(Util::Keycode::A) && hero_state != "climb_ladder" ) {
+    if (Util::Input::IsKeyPressed(Util::Keycode::A) && hero_state != "climb_ladder"  && hero_state != "attack_ground") {
         glm::vec now_XY = this->GetPosition() ;
         now_XY[0] = now_XY[0] - 4 ;
         this->SetPosition(now_XY) ;
     }
-    if (Util::Input::IsKeyPressed(Util::Keycode::D)&& hero_state != "climb_ladder") {
+    if (Util::Input::IsKeyPressed(Util::Keycode::D)&& hero_state != "climb_ladder"  && hero_state != "attack_ground") {
         glm::vec now_XY = this->GetPosition() ;
         now_XY[0] = now_XY[0] + 4 ;
         this->SetPosition(now_XY) ;
@@ -68,6 +69,31 @@ hero::hero(const std::vector<std::string>& ImagePath) {
     SetImage(ImagePath);
 }
 void hero::chang_forward(){
+    if(hero_state == "attack_ground" ){
+        auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
+        if(temp->GetState() == Util::Animation::State::ENDED){
+            if (Util::Input::IsKeyPressed(Util::Keycode::A) && this->forward == "L"){
+                this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lstay.png" ,RESOURCE_DIR"/hero/Lrun.png" }) ;
+            }else if(Util::Input::IsKeyPressed(Util::Keycode::D) && this->forward == "R") {
+                this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" ,RESOURCE_DIR"/hero/Rrun.png" }) ;
+            }else{
+                if (this->forward == "L"){
+                    this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/" + this->forward + "stay.png" }) ;
+                }else{
+                    this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" }) ;
+
+                }
+
+            }
+           auto temp2 = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
+            temp2->SetLooping(true) ;
+            temp2->Play() ;
+            hero_state = "on_ground" ;
+            return ;
+        }else{
+            return ;
+        }
+    }
     if ((Util::Input::IsKeyUp(Util::Keycode::S) || Util::Input::IsKeyUp(Util::Keycode::W)) && hero_state =="climb_ladder"    ) {
         if(!Util::Input::IsKeyPressed(Util::Keycode::S) && !Util::Input::IsKeyPressed(Util::Keycode::W) ){
             std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->Pause() ;
@@ -121,7 +147,21 @@ void hero::chang_forward(){
             temp->Play() ;
         }
     }
+    if (Util::Input::IsKeyDown(Util::Keycode::J) && hero_state != "attack_ground"  && hero_state != "attack_jump"  ){
+        if(hero_state == "one_jump" || hero_state == "sky_down" ){
 
+        }else{
+            hero_state = "attack_ground";
+        }
+        if(forward == "Lstay" || forward == "L"){
+            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/"+ forward+"attack1_hero.png" ,RESOURCE_DIR"/hero/"+ forward+"attack2_hero.png",RESOURCE_DIR"/hero/"+ forward+"attack3_hero.png",RESOURCE_DIR"/hero/"+ forward+"attack3_hero.png"}) ;
+        }else{
+            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/attack1_hero.png" ,RESOURCE_DIR"/hero/attack2_hero.png",RESOURCE_DIR"/hero/attack3_hero.png",RESOURCE_DIR"/hero/attack3_hero.png"}) ;
+        }
+        auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
+        temp->SetLooping(false) ;
+        temp->Play() ;
+    }
 }
 void hero::SetImage(const std::vector<std::string>& Path) {
     m_Drawable = std::make_shared<Util::Animation>( Path,false,150,true,0);

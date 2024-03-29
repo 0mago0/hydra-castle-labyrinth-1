@@ -17,12 +17,13 @@ public:
     explicit heroattack(const std::vector<std::string>& Path);
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void SetImage(const std::vector<std::string>& Path);
-    void attack() ;
+    void attack(std::string forward) ;
     //void Draw(const Util::Transform &transform, const float zIndex) override;
-    void renw_position() ;
+    void renw_position(std::string forward) ;
 private:
-    float stepx[5] = {-30,30,30,0,0} ;
-    float stepy[5] = {30,0,0,0,0} ;
+    bool already = true ;
+    float stepx[5] = {-10,30,30,0,0} ;
+    float stepy[5] = {20,0,-15,0,0} ;
 };
 
 

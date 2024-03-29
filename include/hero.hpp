@@ -22,10 +22,11 @@ public:
     void SetImage(const std::vector<std::string>& Path);
     std::string  hero_state ;
     std::string map ;
+    std::string forward ;
 protected:
     float jump_total = 0 ;
 
-    std::string forward ;
+
 };
 
 

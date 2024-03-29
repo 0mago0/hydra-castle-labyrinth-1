@@ -35,8 +35,8 @@ void App::Update() {
     phy.set_data("map" + std::to_string(m_map->map_number) + ".txt");
     m_hero->map = "map" + std::to_string(m_map->map_number) + ".txt" ;
     m_tool->SetPosition(m_hero->GetPosition()) ;
-    m_tool->renw_position() ;
-    m_tool->attack() ;
+    m_tool->renw_position(m_hero->forward) ;
+    m_tool->attack(m_hero->forward) ;
     m_Root.Update() ;
 
 
