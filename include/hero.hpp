@@ -23,6 +23,8 @@ public:
     std::string  hero_state ;
     std::string map ;
     std::string forward ;
+private:
+    bool attack_state = false ;
 protected:
     float jump_total = 0 ;
 

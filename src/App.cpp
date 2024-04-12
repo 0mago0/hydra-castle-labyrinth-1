@@ -18,6 +18,10 @@ void App::Start() {
     m_CurrentState = State::UPDATE;
     m_tool = std::make_shared<heroattack>(std::vector<std::string>{RESOURCE_DIR"/attack_tool/sword1.png",RESOURCE_DIR"/attack_tool/sword2.png",RESOURCE_DIR"/attack_tool/sword3.png",RESOURCE_DIR"/attack_tool/sword4.png",RESOURCE_DIR"/attack_tool/sword5.png"});
     m_Root.AddChild(m_tool) ;
+    slime = std::make_shared<Slime>() ;
+    auto temp = std::dynamic_pointer_cast<Util::GameObject>(slime) ;
+    m_Root.AddChild(temp) ;
+
 }
 
 void App::Update() {

@@ -3,6 +3,8 @@
 #include "map.hpp"
 #include "hero.hpp"
 #include "heroattack.hpp"
+#include "Slime.hpp"
+
 #include "pch.hpp" // IWYU pragma: export
 #include "Util/Root.hpp"
 class App {
@@ -30,6 +32,7 @@ private:
     std::shared_ptr<heroattack> m_tool ;
     std::shared_ptr<hero>  m_hero ;
     std::shared_ptr<map> m_map;
+    std::shared_ptr<Slime> slime;
 };
 
 #endif

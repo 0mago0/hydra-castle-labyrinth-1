@@ -27,6 +27,12 @@ add_executable(${PROJECT_NAME}
         include/physics.hpp
         include/heroattack.hpp
         src/heroattack.cpp
+        include/background_bgm.hpp
+        src/background_bgm.cpp
+        include/enemy.hpp
+        src/enemy.cpp
+        include/Slime.hpp
+        src/Slime.cpp
 )
 
 if(MSVC)

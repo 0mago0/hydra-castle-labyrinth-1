@@ -68,6 +68,7 @@ hero::hero(const std::vector<std::string>& ImagePath) {
     m_ZIndex =10 ;
     SetImage(ImagePath);
 }
+
 void hero::chang_forward(){
     if(hero_state == "attack_ground" ){
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
@@ -89,9 +90,20 @@ void hero::chang_forward(){
             temp2->SetLooping(true) ;
             temp2->Play() ;
             hero_state = "on_ground" ;
+            attack_state = false ;
             return ;
         }else{
             return ;
+        }
+    }else if(attack_state){
+        auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
+
+        if(temp->GetState() == Util::Animation::State::ENDED){
+            attack_state = false ;
+            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/"+this->forward+"stay.png" ,RESOURCE_DIR"/hero/"+this->forward+"run.png" }) ;            temp->Play() ;
+            temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
+
+            temp->Play() ;
         }
     }
     if ((Util::Input::IsKeyUp(Util::Keycode::S) || Util::Input::IsKeyUp(Util::Keycode::W)) && hero_state =="climb_ladder"    ) {
@@ -158,6 +170,7 @@ void hero::chang_forward(){
         }else{
             this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/attack1_hero.png" ,RESOURCE_DIR"/hero/attack2_hero.png",RESOURCE_DIR"/hero/attack3_hero.png",RESOURCE_DIR"/hero/attack3_hero.png"}) ;
         }
+        attack_state = true ;
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
         temp->SetLooping(false) ;
         temp->Play() ;

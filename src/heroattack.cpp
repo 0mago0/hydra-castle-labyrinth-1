@@ -12,7 +12,7 @@ void heroattack::SetImage(const std::vector<std::string>& Path) {
     m_Visible = false ;
 }
 void heroattack::attack(std::string forward) {
-  //  m_ZIndex = - ;
+    m_ZIndex = 1 ;
     if(Util::Input::IsKeyDown(Util::Keycode::J) && already){
         already = false ;
         if(forward == "Lstay" || forward == "L"){
