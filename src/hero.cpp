@@ -79,7 +79,7 @@ void hero::chang_forward(){
                 this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" ,RESOURCE_DIR"/hero/Rrun.png" }) ;
             }else{
                 if (this->forward == "L"){
-                    this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/" + this->forward + "stay.png" }) ;
+                    this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lstay.png" }) ;
                 }else{
                     this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" }) ;
 
@@ -100,7 +100,8 @@ void hero::chang_forward(){
 
         if(temp->GetState() == Util::Animation::State::ENDED){
             attack_state = false ;
-            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/"+this->forward+"stay.png" ,RESOURCE_DIR"/hero/"+this->forward+"run.png" }) ;            temp->Play() ;
+            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/"+this->forward+"stay.png" ,RESOURCE_DIR"/hero/"+this->forward+"run.png" }) ;
+            temp->Play() ;
             temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
 
             temp->Play() ;
@@ -166,7 +167,7 @@ void hero::chang_forward(){
             hero_state = "attack_ground";
         }
         if(forward == "Lstay" || forward == "L"){
-            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/"+ forward+"attack1_hero.png" ,RESOURCE_DIR"/hero/"+ forward+"attack2_hero.png",RESOURCE_DIR"/hero/"+ forward+"attack3_hero.png",RESOURCE_DIR"/hero/"+ forward+"attack3_hero.png"}) ;
+            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lattack1_hero.png" ,RESOURCE_DIR"/hero/Lattack2_hero.png",RESOURCE_DIR"/hero/Lattack3_hero.png",RESOURCE_DIR"/hero/Lattack3_hero.png"}) ;
         }else{
             this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/attack1_hero.png" ,RESOURCE_DIR"/hero/attack2_hero.png",RESOURCE_DIR"/hero/attack3_hero.png",RESOURCE_DIR"/hero/attack3_hero.png"}) ;
         }

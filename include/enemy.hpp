@@ -17,8 +17,9 @@ public:
     void SetImage(const std::vector<std::string>& Path);
     virtual void attack() = 0;
     virtual void move_even() = 0;
-protected:
     std::string state  ;
+protected:
+
     int HP ;
 
 };

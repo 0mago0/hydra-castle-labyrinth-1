@@ -3,10 +3,9 @@
 //
 
 #include "physics.hpp"
-std::string physics::get_state() {
-    for(size_t i = 0 ; i < state.size() ; i++){
-        return state[i] ;
-    }
+std::string physics::get_state(int index) {
+    return state[index] ;
+
 }
 void  physics::set_data(const std::string& dataPath){
     std::ifstream inputfile(RESOURCE_DIR"/map_data/" + dataPath);
@@ -75,8 +74,8 @@ void  physics::in_sky_down() {
            state[i] ="sky_down";
 
         }
-        object_position.clear();
     }
+    object_position.clear();
 }
 bool physics::climb_ladder(float x , float y){
     if(data[int(x)][int(y)] == 2 || data[int(x)][int(y)] == -2){

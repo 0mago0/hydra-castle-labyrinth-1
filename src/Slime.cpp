@@ -6,6 +6,7 @@
 Slime::Slime() {
     //m_ZIndex = -1 ;
     SetImage(path) ;
+    HP = 1 ;
     SetPosition({0,0}) ;
     state = "sky_down" ;
 }

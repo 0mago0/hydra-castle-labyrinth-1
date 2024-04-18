@@ -9,7 +9,6 @@
 #include <iostream>
 class map : public Util::GameObject {
 public:
-
     explicit map(const std::string& ImagePath,const std::string& dataPath);
     void SetImage(const std::string& ImagePath);
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
