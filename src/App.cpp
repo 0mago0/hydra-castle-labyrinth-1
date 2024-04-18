@@ -40,7 +40,6 @@ void App::Update() {
         phy.state.push_back(all_enemy[i]->state) ;
         phy.jump_total.push_back(0);
     }
-
     phy.in_sky_down();
     m_hero->hero_state = phy.get_state(0);
     for(size_t i = 0 ; i < all_enemy.size() ; i ++){
