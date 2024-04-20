@@ -36,7 +36,12 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
                 X = abs(x1-x2);
                 Y = abs(y1-y2) ;
                 if(sqrt(X*X + Y * Y) <= 50 ){
-                    all_enemy[i]->SetVisible(false) ; //後續會有問題點
+                    all_enemy[i]->bomb();
+
+                  //  temp = std::dynamic_pointer_cast<Util::Animation>(all_enemy[i]) ;
+                   // temp->Play();
+                    //   temp->SetLooping(false);
+                   // all_enemy[i]->SetVisible(false) ; //後續會有問題點
                 }
             }
         }

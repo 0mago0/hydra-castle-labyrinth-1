@@ -15,6 +15,7 @@ public:
     [[nodiscard]]  const glm::vec2 GetPosition() const { return m_Transform.translation; }
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void SetImage(const std::vector<std::string>& Path);
+    void bomb();
     virtual void attack() = 0;
     virtual void move_even() = 0;
     std::string state  ;

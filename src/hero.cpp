@@ -78,7 +78,7 @@ void hero::chang_forward(){
             }else if(Util::Input::IsKeyPressed(Util::Keycode::D) && this->forward == "R") {
                 this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" ,RESOURCE_DIR"/hero/Rrun.png" }) ;
             }else{
-                if (this->forward == "L"){
+                if (this->forward == "Lstay" || this->forward == "L" ){
                     this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lstay.png" }) ;
                 }else{
                     this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" }) ;
