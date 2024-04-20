@@ -33,8 +33,13 @@ void App::Start() {
 void App::Update() {
     m_hero->run() ;
     phy.object_position.push_back(m_hero->GetPosition()) ;
-    phy.jump_total.push_back(0);
+    if(phy.jump_total.empty()){
+        phy.jump_total.push_back(0);
+    }
     phy.state.push_back(m_hero->hero_state) ;
+    for(size_t i = 0 ; i < all_enemy.size() ; i ++){
+        all_enemy[i]->move_even() ;
+    }
     for(size_t i = 0 ; i < all_enemy.size() ; i ++){
         phy.object_position.push_back(all_enemy[i]->GetPosition()) ;
         phy.state.push_back(all_enemy[i]->state) ;
@@ -42,15 +47,14 @@ void App::Update() {
     }
     phy.in_sky_down();
     m_hero->hero_state = phy.get_state(0);
-    for(size_t i = 0 ; i < all_enemy.size() ; i ++){
-        all_enemy[i]->state = phy.get_state(i+1);
-        all_enemy[i]->SetPosition(phy.object_position[i+1]);
-    }
-
-    phy.state.clear() ;
     m_hero->SetPosition(phy.object_position[0]);
+    for(size_t i = 0 ; i < all_enemy.size() ; i ++) {
+        all_enemy[i]->state = phy.get_state(i + 1);
+        all_enemy[i]->SetPosition(phy.object_position[i + 1]);
+    }
+    phy.state.clear() ;
     m_map->hero_position = m_hero->GetPosition() ;
-    m_map->Transitions() ;
+    m_map->Transitions(phy.jump_total) ;
     m_hero->SetPosition(m_map->hero_position) ;
     phy.set_data("map" + std::to_string(m_map->map_number) + ".txt");
     m_hero->map = "map" + std::to_string(m_map->map_number) + ".txt" ;

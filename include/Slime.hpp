@@ -14,7 +14,9 @@ public:
     void move_even() override ;
     void attack() override ;
 protected:
-    std::vector<std::string> path = {RESOURCE_DIR"/enemy/slime1.png"} ;
+    float jump_total = 0;
+    bool jp = false ,aleardy = false;
+    std::vector<std::string> path = {RESOURCE_DIR"/enemy/slime1.png",RESOURCE_DIR"/enemy/slime2.png",RESOURCE_DIR"/enemy/slime3.png",RESOURCE_DIR"/enemy/slime4.png",RESOURCE_DIR"/enemy/slime5.png",RESOURCE_DIR"/enemy/slime6.png",RESOURCE_DIR"/enemy/slime7.png"} ;
 };
 
 

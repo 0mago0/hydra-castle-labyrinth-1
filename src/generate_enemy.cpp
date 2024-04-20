@@ -38,6 +38,7 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
             auto temp = std::dynamic_pointer_cast<Util::GameObject>(slime) ;
             all_enemy.push_back(slime) ;
             m_Root.AddChild(temp) ;
+
         }
     }
     ifs.close();

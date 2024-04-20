@@ -22,25 +22,29 @@ void map::read_data(const std::string& Path){
         }
     }
 }
-void  map::Transitions() {
+void  map::Transitions(std::vector<float> &jump_total) {
     if(hero_position[0] > 476){
         hero_position = {-420 , hero_position[1]} ;
         this->map_number +=1 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;
+        std::vector<float>().swap(jump_total);
     }
     if(hero_position[0] < -476){
         hero_position = {420 , hero_position[1]} ;
         this->map_number -=1 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;
+        std::vector<float>().swap(jump_total);
     }
     if(hero_position[1] < -340){
         hero_position = {hero_position[0] ,340 } ;
         this->map_number +=8 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;
+        std::vector<float>().swap(jump_total);
     }
     if(hero_position[1] > 340){
         hero_position = {hero_position[0] ,-340 } ;
         this->map_number -=8 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;
+        std::vector<float>().swap(jump_total);
     }
 }

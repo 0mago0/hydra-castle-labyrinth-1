@@ -27,7 +27,7 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
     }else if(!already){
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
         if(temp->GetCurrentFrameIndex() == 1 ){
-            for(size_t i = 0 ; i < all_enemy.size() ; i++){
+            for(int i = all_enemy.size()-1 ; i >=0 ; i--){
                 float x1,y1,x2,y2,X,Y ;
                 x1 = all_enemy[i]->GetPosition()[0] + 10;
                 y1 = all_enemy[i]->GetPosition()[1] ;
@@ -37,8 +37,10 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
                 Y = abs(y1-y2) ;
                 if(sqrt(X*X + Y * Y) <= 50 ){
                     all_enemy[i]->bomb();
+                    all_enemy.erase(all_enemy.begin() + i);
 
-                  //  temp = std::dynamic_pointer_cast<Util::Animation>(all_enemy[i]) ;
+
+                    //  temp = std::dynamic_pointer_cast<Util::Animation>(all_enemy[i]) ;
                    // temp->Play();
                     //   temp->SetLooping(false);
                    // all_enemy[i]->SetVisible(false) ; //後續會有問題點

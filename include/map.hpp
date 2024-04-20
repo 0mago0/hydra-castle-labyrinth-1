@@ -13,7 +13,7 @@ public:
     void SetImage(const std::string& ImagePath);
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void read_data(const std::string& Path) ;
-    void Transitions()  ;
+    void Transitions(std::vector<float> &jump_total)  ;
     int map_number = 0 ;
     glm::vec2 hero_position ;
     // const glm::vec2& GetPosition(glm::vec2  Position)

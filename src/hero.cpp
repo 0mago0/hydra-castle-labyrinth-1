@@ -100,8 +100,12 @@ void hero::chang_forward(){
 
         if(temp->GetState() == Util::Animation::State::ENDED){
             attack_state = false ;
-            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/"+this->forward+"stay.png" ,RESOURCE_DIR"/hero/"+this->forward+"run.png" }) ;
-            temp->Play() ;
+            if (this->forward == "Lstay" || this->forward == "L" ){
+                this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lstay.png" ,RESOURCE_DIR"/hero/Lrun.png" }) ;
+            }else{
+                this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" ,RESOURCE_DIR"/hero/Rrun.png" }) ;
+
+            }            temp->Play() ;
             temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
 
             temp->Play() ;

@@ -3,8 +3,8 @@
 //
 
 #include "enemy.hpp"
-void enemy::SetImage(const std::vector<std::string>& Path) {
-    m_Drawable = std::make_shared<Util::Animation>( Path,false,150,true,0);
+void enemy::SetImage(const std::vector<std::string>& Path , int interval_number,bool loopting) {
+    m_Drawable = std::make_shared<Util::Animation>( Path,true,interval_number,loopting,0);
 }
 void enemy::bomb(){
     std::vector<std::string> s ;

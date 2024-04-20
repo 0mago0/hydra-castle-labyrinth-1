@@ -14,7 +14,7 @@ class enemy: public Util::GameObject {
 public:
     [[nodiscard]]  const glm::vec2 GetPosition() const { return m_Transform.translation; }
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
-    void SetImage(const std::vector<std::string>& Path);
+    void SetImage(const std::vector<std::string>& Path,int interval_number = 150,bool loopting = true);
     void bomb();
     virtual void attack() = 0;
     virtual void move_even() = 0;
