@@ -40,6 +40,6 @@ void Slime::move_even() {
         jp = true ;
     }
 }
-void Slime::attack() {
+void Slime::attack(const glm::vec2& hero_position) {
 
 }

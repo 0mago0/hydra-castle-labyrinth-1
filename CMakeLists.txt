@@ -35,6 +35,9 @@ add_executable(${PROJECT_NAME}
         src/Slime.cpp
         src/generate_enemy.cpp
         include/generate_enemy.hpp
+        src/caterpillar.cpp
+        include/caterpillar.hpp
+        include/caterpillar.hpp
 )
 
 if(MSVC)

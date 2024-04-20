@@ -171,9 +171,9 @@ void hero::chang_forward(){
             hero_state = "attack_ground";
         }
         if(forward == "Lstay" || forward == "L"){
-            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lattack1_hero.png" ,RESOURCE_DIR"/hero/Lattack2_hero.png",RESOURCE_DIR"/hero/Lattack3_hero.png",RESOURCE_DIR"/hero/Lattack3_hero.png"}) ;
+            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lattack1_hero.png" ,RESOURCE_DIR"/hero/Lattack2_hero.png",RESOURCE_DIR"/hero/Lattack3_hero.png",RESOURCE_DIR"/hero/Lattack3_hero.png"},70) ;
         }else{
-            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/attack1_hero.png" ,RESOURCE_DIR"/hero/attack2_hero.png",RESOURCE_DIR"/hero/attack3_hero.png",RESOURCE_DIR"/hero/attack3_hero.png"}) ;
+            this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/attack1_hero.png" ,RESOURCE_DIR"/hero/attack2_hero.png",RESOURCE_DIR"/hero/attack3_hero.png",RESOURCE_DIR"/hero/attack3_hero.png"},70) ;
         }
         attack_state = true ;
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
@@ -181,6 +181,6 @@ void hero::chang_forward(){
         temp->Play() ;
     }
 }
-void hero::SetImage(const std::vector<std::string>& Path) {
-    m_Drawable = std::make_shared<Util::Animation>( Path,false,150,true,0);
+void hero::SetImage(const std::vector<std::string>& Path,int inter) {
+    m_Drawable = std::make_shared<Util::Animation>( Path,false,inter,true,0);
 }

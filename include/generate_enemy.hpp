@@ -10,6 +10,7 @@
 #include "Util/Root.hpp"
 #include "hero.hpp"
 #include "Slime.hpp"
+#include "caterpillar.hpp"
 #include "enemy.hpp"
 #include <fstream>
 #include <iostream>

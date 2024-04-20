@@ -8,7 +8,7 @@ heroattack::heroattack(const std::vector<std::string>& Path) {
     SetImage(Path);
 }
 void heroattack::SetImage(const std::vector<std::string>& Path) {
-    m_Drawable = std::make_shared<Util::Animation>( Path,false,100,false,0);
+    m_Drawable = std::make_shared<Util::Animation>( Path,false,70,false,0);
     m_Visible = false ;
 }
 void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> &all_enemy) {

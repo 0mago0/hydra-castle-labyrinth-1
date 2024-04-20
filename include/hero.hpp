@@ -19,7 +19,7 @@ public:
     explicit hero(const std::vector<std::string>& ImagePath);
     [[nodiscard]]  const glm::vec2 GetPosition() const { return m_Transform.translation; }
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
-    void SetImage(const std::vector<std::string>& Path);
+    void SetImage(const std::vector<std::string>& Path , int inter = 150);
     std::string  hero_state ;
     std::string map ;
     std::string forward ;

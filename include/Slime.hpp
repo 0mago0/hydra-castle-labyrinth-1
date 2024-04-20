@@ -12,7 +12,7 @@ public:
     explicit Slime() ;
     void jump() ;
     void move_even() override ;
-    void attack() override ;
+    void attack(const glm::vec2& hero_position) override ;
 protected:
     float jump_total = 0;
     bool jp = false ,aleardy = false;

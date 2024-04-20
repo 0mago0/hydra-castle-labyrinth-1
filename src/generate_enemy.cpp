@@ -38,7 +38,13 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
             auto temp = std::dynamic_pointer_cast<Util::GameObject>(slime) ;
             all_enemy.push_back(slime) ;
             m_Root.AddChild(temp) ;
-
+        }
+        if(data[0] == "caterpillar"){
+            std::shared_ptr<caterpillar> Caterpillar = std::make_shared<caterpillar>() ;
+            Caterpillar->SetPosition({std::stof(data[1]),std::stof(data[2])});
+            auto temp = std::dynamic_pointer_cast<Util::GameObject>(Caterpillar) ;
+            all_enemy.push_back(Caterpillar) ;
+            m_Root.AddChild(temp) ;
         }
     }
     ifs.close();
