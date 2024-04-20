@@ -34,6 +34,21 @@ void caterpillar::move_even() {
         }
     }
 }
-void caterpillar::attack(const glm::vec2& hero_position) {
-
+void caterpillar::attack(std::shared_ptr<hero> m_hero) {
+    float x1,y1,x2,y2,x,y,distance ;
+    x1 = m_hero->GetPosition()[0] ;
+    y1 = m_hero->GetPosition()[1] ;
+    x2 = GetPosition()[0] ;
+    y2 = GetPosition()[1] ;
+    x = x1-x2 ;
+    y = y1-y2 ;
+    distance = sqrt(x*x + y*y) ;
+    if(distance < 30){
+        m_hero->hero_state = "attacked" ;
+        if (x2 > x1){
+            m_hero->forward = "R" ;
+        }else {
+            m_hero->forward = "L" ;
+        }
+    }
 }

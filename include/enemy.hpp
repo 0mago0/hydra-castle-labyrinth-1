@@ -9,6 +9,7 @@
 #include "Util/Animation.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
+class  hero ;
 
 class enemy: public Util::GameObject {
 public:
@@ -16,7 +17,7 @@ public:
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void SetImage(const std::vector<std::string>& Path,int interval_number = 150,bool loopting = true);
     void bomb();
-    virtual void attack(const glm::vec2& hero_position) = 0;
+    virtual void attack(std::shared_ptr<hero> m_hero) = 0;
     virtual void move_even() = 0;
     std::string state  ;
 protected:

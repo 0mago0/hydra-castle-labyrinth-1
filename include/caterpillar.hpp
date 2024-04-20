@@ -11,7 +11,7 @@ class caterpillar: public enemy {
 public:
     explicit caterpillar() ;
     void move_even() override ;
-    void attack(const glm::vec2& hero_position) override ;
+    void attack(std::shared_ptr<hero> m_hero) override ;
 protected:
     float move_total = 0;
     bool jp = false ,aleardy = false;

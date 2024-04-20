@@ -1,0 +1,3 @@
+slime 0 0
+slime 100 0
+caterpillar -60 0

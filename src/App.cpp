@@ -36,10 +36,12 @@ void App::Update() {
     if(phy.jump_total.empty()){
         phy.jump_total.push_back(0);
     }
-    phy.state.push_back(m_hero->hero_state) ;
     for(size_t i = 0 ; i < all_enemy.size() ; i ++){
+        all_enemy[i]->attack(m_hero);
         all_enemy[i]->move_even() ;
     }
+    phy.state.push_back(m_hero->hero_state) ;
+
     for(size_t i = 0 ; i < all_enemy.size() ; i ++){
         phy.object_position.push_back(all_enemy[i]->GetPosition()) ;
         phy.state.push_back(all_enemy[i]->state) ;

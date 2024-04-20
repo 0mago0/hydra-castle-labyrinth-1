@@ -4,6 +4,62 @@
 #include "physics.hpp"
 #include "hero.hpp"
 void hero::run() {
+    if(hero_state == "attacked"){
+        if((forward == "L" ||forward == "Lstay") && phase_strike_fly == 0){
+            SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lattacked1.png",RESOURCE_DIR"/hero/Lattacked2.png"},5,true);
+            this->SetPosition({GetPosition()[0]+5,GetPosition()[1]+3}) ;
+        }else if((forward == "R" ||forward == "stay") && phase_strike_fly == 0 ) {
+            this->SetPosition({GetPosition()[0]-5,GetPosition()[1]+3}) ;
+            SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Rattacked1.png",RESOURCE_DIR"/hero/Rattacked2.png"},5,true);
+        }
+        if(forward == "L" ||forward == "Lstay"){
+            this->SetPosition({GetPosition()[0]+5,GetPosition()[1]+3}) ;
+        }else{
+            this->SetPosition({GetPosition()[0]-5,GetPosition()[1]+3}) ;
+        }
+        auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
+        temp->Play();
+        move_xtotal +=5 ;
+        move_ytotal += 3 ;
+        if(move_xtotal >= 80 && move_ytotal >= 60){
+            move_xtotal = 0 ;
+            move_ytotal = 0 ;
+            hero_state = "sky_down" ;
+        }
+        phase_strike_fly = 1 ;
+        judge_keybord = false ;
+        return ;
+    }
+    if(phase_strike_fly == 1  &&  hero_state == "sky_down"){
+        nocontrol = true ;
+        phase_strike_fly = 2 ;
+        return;
+    }else if(phase_strike_fly == 2) {
+        inter =  Util::Time::GetElapsedTimeMs();
+        if((forward == "L" ||forward == "Lstay") && phase_strike_fly == 2){
+            SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lattacked3.png",RESOURCE_DIR"/hero/hide.png"},5,true);
+        }else if((forward == "R" ||forward == "stay") && phase_strike_fly == 2) {
+            SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Rattacked3.png",RESOURCE_DIR"/hero/hide.png"},5,true);
+        }
+        phase_strike_fly = 3  ;
+        auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
+        temp->Play();
+    }
+    if(nocontrol){
+        unsigned  int sa = Util::Time::GetElapsedTimeMs() -1000 ;
+        if(inter < sa ){
+            if (this->forward == "Lstay" || this->forward == "L" ){
+                this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lstay.png" ,RESOURCE_DIR"/hero/Lrun.png" }) ;
+            }else{
+                this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" ,RESOURCE_DIR"/hero/Rrun.png" }) ;
+            }
+            auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
+            phase_strike_fly = 0 ;
+            nocontrol = false ;
+        }else{
+            return ;
+        }
+    }
     chang_forward() ;
     float  x =floor((8 * 60 + this->GetPosition()[0]) / 60) ;
     float  y =floor((6*60 - this->GetPosition()[1]+30) / 60)  ;
@@ -36,12 +92,12 @@ void hero::run() {
            hero_state = "sky_down";
         }
     }
-    if (Util::Input::IsKeyPressed(Util::Keycode::A) && hero_state != "climb_ladder"  && hero_state != "attack_ground") {
+    if (Util::Input::IsKeyPressed(Util::Keycode::A) && judge_keybord && hero_state != "climb_ladder"  && hero_state != "attack_ground") {
         glm::vec now_XY = this->GetPosition() ;
         now_XY[0] = now_XY[0] - 4 ;
         this->SetPosition(now_XY) ;
     }
-    if (Util::Input::IsKeyPressed(Util::Keycode::D)&& hero_state != "climb_ladder"  && hero_state != "attack_ground") {
+    if (Util::Input::IsKeyPressed(Util::Keycode::D) &&   judge_keybord && hero_state != "climb_ladder"  && hero_state != "attack_ground") {
         glm::vec now_XY = this->GetPosition() ;
         now_XY[0] = now_XY[0] + 4 ;
         this->SetPosition(now_XY) ;
@@ -71,11 +127,12 @@ hero::hero(const std::vector<std::string>& ImagePath) {
 
 void hero::chang_forward(){
     if(hero_state == "attack_ground" ){
+
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
         if(temp->GetState() == Util::Animation::State::ENDED){
-            if (Util::Input::IsKeyPressed(Util::Keycode::A) && this->forward == "L"){
+            if (Util::Input::IsKeyPressed(Util::Keycode::A) ){
                 this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lstay.png" ,RESOURCE_DIR"/hero/Lrun.png" }) ;
-            }else if(Util::Input::IsKeyPressed(Util::Keycode::D) && this->forward == "R") {
+            }else if(Util::Input::IsKeyPressed(Util::Keycode::D) ) {
                 this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" ,RESOURCE_DIR"/hero/Rrun.png" }) ;
             }else{
                 if (this->forward == "Lstay" || this->forward == "L" ){
@@ -104,8 +161,8 @@ void hero::chang_forward(){
                 this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lstay.png" ,RESOURCE_DIR"/hero/Lrun.png" }) ;
             }else{
                 this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" ,RESOURCE_DIR"/hero/Rrun.png" }) ;
-
-            }            temp->Play() ;
+            }
+            temp->Play() ;
             temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
 
             temp->Play() ;
@@ -130,12 +187,14 @@ void hero::chang_forward(){
         }
     }
     if (Util::Input::IsKeyDown(Util::Keycode::D) && hero_state!= "climb_ladder") {
+        judge_keybord = true ;
         this->forward = "R" ;
         this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" ,RESOURCE_DIR"/hero/Rrun.png" }) ;
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
         temp->Play() ;
     }
     if (Util::Input::IsKeyDown(Util::Keycode::A) && hero_state!= "climb_ladder" ) {
+        judge_keybord = true ;
         this->forward = "L" ;
         this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lstay.png" ,RESOURCE_DIR"/hero/Lrun.png" }) ;
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
@@ -181,6 +240,6 @@ void hero::chang_forward(){
         temp->Play() ;
     }
 }
-void hero::SetImage(const std::vector<std::string>& Path,int inter) {
-    m_Drawable = std::make_shared<Util::Animation>( Path,false,inter,true,0);
+void hero::SetImage(const std::vector<std::string>& Path,int inter,bool loopt) {
+    m_Drawable = std::make_shared<Util::Animation>( Path,loopt,inter,true,0);
 }
