@@ -1,3 +1,4 @@
-slime 0 0
+slime -50 0
 slime 100 0
 caterpillar -60 0
+grayguntower 150 30 L
