@@ -11,7 +11,7 @@ void heroattack::SetImage(const std::vector<std::string>& Path) {
     m_Drawable = std::make_shared<Util::Animation>( Path,false,70,false,0);
     m_Visible = false ;
 }
-void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> &all_enemy) {
+void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> &all_enemy,Util::Root &m_Root) {
     m_ZIndex = 1 ;
     if(Util::Input::IsKeyDown(Util::Keycode::J) && already){
         already = false ;
@@ -36,10 +36,7 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
                 X = abs(x1-x2);
                 Y = abs(y1-y2) ;
                 if(sqrt(X*X + Y * Y) <= 50 ){
-                    all_enemy[i]->bomb();
-                    all_enemy.erase(all_enemy.begin() + i);
-
-
+                    all_enemy[i]->HP -= 1 ;
                     //  temp = std::dynamic_pointer_cast<Util::Animation>(all_enemy[i]) ;
                    // temp->Play();
                     //   temp->SetLooping(false);
@@ -49,7 +46,6 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
         }
     }
     auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
-
     if(temp->GetState() == Util::Animation::State::ENDED){
         already = true ;
     }

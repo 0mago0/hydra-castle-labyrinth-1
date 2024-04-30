@@ -11,6 +11,7 @@
 #include "hero.hpp"
 #include "Slime.hpp"
 #include "caterpillar.hpp"
+#include "grayguntower.hpp"
 #include "enemy.hpp"
 #include <fstream>
 #include <iostream>

@@ -34,8 +34,10 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
         std::vector<std::string> data = split(s, " ");
         if(data[0] == "slime"){
             std::shared_ptr<Slime> slime = std::make_shared<Slime>() ;
+
             slime->SetPosition({std::stof(data[1]),std::stof(data[2])});
             auto temp = std::dynamic_pointer_cast<Util::GameObject>(slime) ;
+
             all_enemy.push_back(slime) ;
             m_Root.AddChild(temp) ;
         }
@@ -43,7 +45,18 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
             std::shared_ptr<caterpillar> Caterpillar = std::make_shared<caterpillar>() ;
             Caterpillar->SetPosition({std::stof(data[1]),std::stof(data[2])});
             auto temp = std::dynamic_pointer_cast<Util::GameObject>(Caterpillar) ;
+
             all_enemy.push_back(Caterpillar) ;
+            m_Root.AddChild(temp) ;
+        }
+        if(data[0] == "grayguntower"){
+            std::shared_ptr<grayguntower> Grayguntower = std::make_shared<grayguntower>(data[3])   ;
+            Grayguntower->SetPosition({std::stof(data[1]),std::stof(data[2])});
+            auto temp = std::dynamic_pointer_cast<Util::GameObject>(Grayguntower) ;
+            Grayguntower->Ammo->SetPosition({std::stof(data[1]),std::stof(data[2])});
+            temp->AddChild(Grayguntower->Ammo);
+
+            all_enemy.push_back(Grayguntower) ;
             m_Root.AddChild(temp) ;
         }
     }

@@ -21,17 +21,19 @@ public:
     void chang_forward();
 
     explicit hero(const std::vector<std::string>& ImagePath);
+    void bomb() ;
     [[nodiscard]]  const glm::vec2 GetPosition() const { return m_Transform.translation; }
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void SetImage(const std::vector<std::string>& Path , int inter = 150,bool loopt = false);
+    bool judge_HP() ;
     std::string  hero_state ;
     std::string map ;
     std::string forward ;
-
+    int HP = 20 ;
 private:
     float move_ytotal ,move_xtotal ;
     bool attack_state = false , nocontrol = false ;
-    bool judge_keybord =false;
+    bool judge_keybord =false,judge_die = false;
     int phase_strike_fly =0 ;
     unsigned long inter = 0 ;
 protected:

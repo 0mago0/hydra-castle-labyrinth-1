@@ -4,6 +4,11 @@
 #include "physics.hpp"
 #include "hero.hpp"
 void hero::run() {
+
+
+    if(judge_die){
+        return ;
+    }
     if(hero_state == "attacked"){
         if((forward == "L" ||forward == "Lstay") && phase_strike_fly == 0){
             SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lattacked1.png",RESOURCE_DIR"/hero/Lattacked2.png"},5,true);
@@ -48,6 +53,8 @@ void hero::run() {
     if(nocontrol){
         unsigned  int sa = Util::Time::GetElapsedTimeMs() -1000 ;
         if(inter < sa ){
+            judge_die = judge_HP() ;
+            if(judge_die) return ;
             if (this->forward == "Lstay" || this->forward == "L" ){
                 this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lstay.png" ,RESOURCE_DIR"/hero/Lrun.png" }) ;
             }else{
@@ -104,6 +111,10 @@ void hero::run() {
     }
     if (Util::Input::IsKeyDown(Util::Keycode::SPACE) && hero_state == "on_ground") {
         jump_total = 0 ;
+        glm::vec now_XY = this->GetPosition() ;
+        jump_total += 15  ;
+        now_XY[1] = now_XY[1] + 15 ;
+        this->SetPosition(now_XY) ;
         hero_state = "one_jump" ;
     }
      if(Util::Input::IsKeyPressed(Util::Keycode::SPACE) && jump_total <= 130 && hero_state == "one_jump"){
@@ -242,4 +253,19 @@ void hero::chang_forward(){
 }
 void hero::SetImage(const std::vector<std::string>& Path,int inter,bool loopt) {
     m_Drawable = std::make_shared<Util::Animation>( Path,loopt,inter,true,0);
+}
+void hero::bomb() {
+    std::vector<std::string> s ;
+    for (int j =1 ; j <= 10 ; j ++){
+        s.push_back(RESOURCE_DIR"/miscellaneous/bomb" +std::to_string(j)+".png");
+    }
+    m_Drawable = std::make_shared<Util::Animation>( s,true,40,false,0);
+
+}
+bool hero::judge_HP() {
+    if(this->HP <= 0){
+        this->bomb() ;
+        return true ;
+    }
+    return  false ;
 }

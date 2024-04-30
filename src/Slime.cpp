@@ -41,7 +41,6 @@ void Slime::move_even() {
     }
 }
 void Slime::attack(std::shared_ptr<hero> m_hero) {
-
     float x1,y1,x2,y2,x,y,distance ;
     x1 = m_hero->GetPosition()[0] ;
     y1 = m_hero->GetPosition()[1] ;
@@ -50,8 +49,9 @@ void Slime::attack(std::shared_ptr<hero> m_hero) {
     x = x1-x2 ;
     y = y1-y2 ;
     distance = sqrt(x*x + y*y) ;
-    if(distance < 30){
+    if(distance < 30 && m_hero->HP > 0){
         m_hero->hero_state = "attacked" ;
+        m_hero->HP -= 1 ;
         if (x2 > x1){
             m_hero->forward = "R" ;
         }else {

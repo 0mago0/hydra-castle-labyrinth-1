@@ -15,14 +15,16 @@ class enemy: public Util::GameObject {
 public:
     [[nodiscard]]  const glm::vec2 GetPosition() const { return m_Transform.translation; }
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
-    void SetImage(const std::vector<std::string>& Path,int interval_number = 150,bool loopting = true);
+    void SetImage(const std::vector<std::string>& Path,int interval_number = 150,bool loopting = true,bool play = true);
     void bomb();
+    Util::Animation::State Getplaystate() ;
     virtual void attack(std::shared_ptr<hero> m_hero) = 0;
     virtual void move_even() = 0;
-    std::string state  ;
+    std::string state,hp_state = "ok" ;
+    int HP  = 0 ;
 protected:
     int attack_distance = 0 ;
-    int HP  = 0 ;
+
 
 };
 

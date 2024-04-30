@@ -22,29 +22,48 @@ void map::read_data(const std::string& Path){
         }
     }
 }
-void  map::Transitions(std::vector<float> &jump_total) {
+void  map::Transitions(std::vector<float> &jump_total,Util::Root &m_Root,std::vector<std::shared_ptr<enemy>> &all_enemy) {
     if(hero_position[0] > 476){
         hero_position = {-420 , hero_position[1]} ;
         this->map_number +=1 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;
         std::vector<float>().swap(jump_total);
+        clean(m_Root,all_enemy) ;
+
     }
     if(hero_position[0] < -476){
         hero_position = {420 , hero_position[1]} ;
         this->map_number -=1 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;
         std::vector<float>().swap(jump_total);
+        clean(m_Root,all_enemy) ;
+      //  GenerateEnemy->generat(m_Root,all_enemy) ;
+
     }
     if(hero_position[1] < -340){
         hero_position = {hero_position[0] ,340 } ;
         this->map_number +=8 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;
         std::vector<float>().swap(jump_total);
+        clean(m_Root,all_enemy) ;
+       // GenerateEnemy->generat(m_Root,all_enemy) ;
+
     }
     if(hero_position[1] > 340){
         hero_position = {hero_position[0] ,-340 } ;
         this->map_number -=8 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;
         std::vector<float>().swap(jump_total);
+        clean(m_Root,all_enemy) ;
+      //  GenerateEnemy->generat(m_Root,all_enemy) ;
     }
+}
+void map::clean(Util::Root &m_Root,std::vector<std::shared_ptr<enemy>> &all_enemy){
+    for(int i =all_enemy.size() -1 ; i >= 0 ;i--){
+        m_Root.RemoveChild(all_enemy[i]);
+    }
+    std::vector<std::shared_ptr<enemy>>().swap(all_enemy);
+    generate_enemy Generate_enemy ;
+    Generate_enemy.setpath("enemy" + std::to_string(map_number) + ".txt");
+    Generate_enemy.generat(m_Root,all_enemy);
 }

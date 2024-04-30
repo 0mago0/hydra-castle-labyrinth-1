@@ -22,12 +22,16 @@ void App::Start() {
     m_Root.AddChild(m_tool) ;
 
     generate_enemy.generat(m_Root,all_enemy) ;
-    //slime = std::make_shared<Slime>() ;
-   // auto temp = std::dynamic_pointer_cast<Util::GameObject>(slime) ;
-    //m_Root.AddChild(temp) ;
 
-   // temp = std::dynamic_pointer_cast<Util::GameObject>(all_enemy[1]) ;
-   // m_Root.RemoveChild(temp);
+//    std::shared_ptr<caterpillar> Caterpillar = std::make_shared<caterpillar>() ;
+//    auto temp = std::dynamic_pointer_cast<Util::GameObject>(Caterpillar) ;
+//     slime = std::make_shared<Slime>() ;
+//    slime->SetPosition({100,30});
+//    temp->AddChild(std::dynamic_pointer_cast<Util::GameObject>(slime));
+//
+//    m_Root.AddChild(temp) ;
+//   // temp = std::dynamic_pointer_cast<Util::GameObject>(all_enemy[1]) ;
+//    m_Root.RemoveChild(temp);
 }
 
 void App::Update() {
@@ -36,9 +40,19 @@ void App::Update() {
     if(phy.jump_total.empty()){
         phy.jump_total.push_back(0);
     }
-    for(size_t i = 0 ; i < all_enemy.size() ; i ++){
-        all_enemy[i]->attack(m_hero);
-        all_enemy[i]->move_even() ;
+    for(int i = all_enemy.size()-1 ; i >=0 ; i--){
+        if(all_enemy[i]->HP <= 0 && all_enemy[i]->hp_state != "die"){
+            all_enemy[i]->bomb();
+            continue;
+        }else if(all_enemy[i]->hp_state == "die" && all_enemy[i]->Getplaystate() == Util::Animation::State::ENDED){
+            m_Root.RemoveChild(all_enemy[i]) ;
+            all_enemy.erase(all_enemy.begin() + i);
+            continue;
+        }
+        if(all_enemy[i]->hp_state != "die"){
+            all_enemy[i]->attack(m_hero);
+            all_enemy[i]->move_even() ;
+        }
     }
     phy.state.push_back(m_hero->hero_state) ;
 
@@ -56,13 +70,13 @@ void App::Update() {
     }
     phy.state.clear() ;
     m_map->hero_position = m_hero->GetPosition() ;
-    m_map->Transitions(phy.jump_total) ;
+    m_map->Transitions(phy.jump_total,m_Root,all_enemy) ;
     m_hero->SetPosition(m_map->hero_position) ;
     phy.set_data("map" + std::to_string(m_map->map_number) + ".txt");
     m_hero->map = "map" + std::to_string(m_map->map_number) + ".txt" ;
     m_tool->SetPosition(m_hero->GetPosition()) ;
     m_tool->renw_position(m_hero->forward) ;
-    m_tool->attack(m_hero->forward,all_enemy) ;
+    m_tool->attack(m_hero->forward,all_enemy,m_Root) ;
     m_Root.Update() ;
 
 
