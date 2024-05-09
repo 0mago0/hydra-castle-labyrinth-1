@@ -45,10 +45,10 @@ void caterpillar::attack(std::shared_ptr<hero> m_hero) {
     x = x1-x2 ;
     y = y1-y2 ;
     distance = sqrt(x*x + y*y) ;
-    if(distance < 30 && m_hero->HP > 0 && m_hero->nocontrol == false){
+    if(distance < 30 && m_hero->HP > 0 && !m_hero->Invincible){
         m_hero->hero_state = "attacked" ;
         m_hero->HP -= 1 ;
-        m_hero->nocontrol = true ;
+        m_hero->Invincible = true  ;
         if (x2 > x1){
             m_hero->forward = "R" ;
         }else {

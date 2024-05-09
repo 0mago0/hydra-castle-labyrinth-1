@@ -6,7 +6,6 @@
 const std::vector<std::string> split(const std::string& str, const std::string& pattern) {
     std::vector<std::string> result;
     std::string::size_type begin, end;
-
     end = str.find(pattern);
     begin = 0;
 
@@ -44,8 +43,9 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
         if(data[0] == "caterpillar"){
             std::shared_ptr<caterpillar> Caterpillar = std::make_shared<caterpillar>() ;
             Caterpillar->SetPosition({std::stof(data[1]),std::stof(data[2])});
+            Caterpillar->m_miscellaneous = std::make_shared<miscellaneous>("attack_miscellaneous");
             auto temp = std::dynamic_pointer_cast<Util::GameObject>(Caterpillar) ;
-
+            temp->AddChild(Caterpillar->m_miscellaneous );
             all_enemy.push_back(Caterpillar) ;
             m_Root.AddChild(temp) ;
         }

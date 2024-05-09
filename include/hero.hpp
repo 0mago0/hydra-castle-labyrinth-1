@@ -31,9 +31,11 @@ public:
     std::string forward ;
     int HP = 20 ;
     bool nocontrol = false;
+    bool Invincible = false ;
 private:
+
     float move_ytotal ,move_xtotal ;
-    bool attack_state = false  ;
+    bool attack_state = false,R_run = false , L_run = false  ;
     bool judge_keybord =false,judge_die = false;
     int phase_strike_fly =0 ;
     unsigned long inter = 0 ;

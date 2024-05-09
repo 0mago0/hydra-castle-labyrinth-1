@@ -12,6 +12,7 @@
 #include "Slime.hpp"
 #include "caterpillar.hpp"
 #include "grayguntower.hpp"
+#include "miscellaneous.hpp"
 #include "enemy.hpp"
 #include <fstream>
 #include <iostream>

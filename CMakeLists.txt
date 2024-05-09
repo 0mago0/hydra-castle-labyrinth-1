@@ -42,6 +42,8 @@ add_executable(${PROJECT_NAME}
         include/grayguntower.hpp
         src/ammo.cpp
         include/ammo.hpp
+        src/miscellaneous.cpp
+        include/miscellaneous.hpp
 )
 
 if(MSVC)

@@ -7,15 +7,15 @@
 
 void App::Start() {
     LOG_TRACE("Start");
-    generate_enemy.setpath("enemy1.txt");
+    generate_enemy.setpath("enemy13.txt");
     m_hero = std::make_shared<hero>(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png",RESOURCE_DIR"/hero/Rrun.png",RESOURCE_DIR"/hero/Rrun.png"});
     m_hero->SetPosition({0,-30});
     m_hero->hero_state = "on_ground" ;
     m_Root.AddChild(m_hero);
-    phy.set_data("map1.txt");
-    m_hero->map = "map1.txt" ;
-    m_map = std::make_shared<map>("p1.png","map1.txt");
-    m_map->map_number = 1 ;
+    phy.set_data("map13.txt");
+    m_hero->map = "map13.txt" ;
+    m_map = std::make_shared<map>("p13.png","map13.txt");
+    m_map->map_number = 13 ;
     m_Root.AddChild(m_map);
     m_CurrentState = State::UPDATE;
     m_tool = std::make_shared<heroattack>(std::vector<std::string>{RESOURCE_DIR"/attack_tool/sword1.png",RESOURCE_DIR"/attack_tool/sword2.png",RESOURCE_DIR"/attack_tool/sword3.png",RESOURCE_DIR"/attack_tool/sword4.png",RESOURCE_DIR"/attack_tool/sword5.png"});

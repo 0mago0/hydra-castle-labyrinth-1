@@ -14,6 +14,7 @@
 #include "map.hpp"
 #include<algorithm>
 #include "Util/Root.hpp"
+
 class heroattack: public Util::GameObject {
 public:
     [[nodiscard]]  const glm::vec2 GetPosition() const { return m_Transform.translation; }

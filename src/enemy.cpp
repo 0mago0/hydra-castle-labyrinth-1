@@ -15,6 +15,7 @@ void enemy::bomb(){
     hp_state = "die" ;
     m_Drawable = std::make_shared<Util::Animation>( s,true,40,false,0);
 }
+
 Util::Animation::State enemy::Getplaystate() {
     auto  temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
     return temp->GetState() ;

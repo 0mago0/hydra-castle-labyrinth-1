@@ -36,6 +36,7 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
                 X = abs(x1-x2);
                 Y = abs(y1-y2) ;
                 if(sqrt(X*X + Y * Y) <= 50 ){
+                    all_enemy[i]->m_miscellaneous->play(all_enemy[i]->GetPosition()) ;
                     all_enemy[i]->HP -= 1 ;
                     //  temp = std::dynamic_pointer_cast<Util::Animation>(all_enemy[i]) ;
                    // temp->Play();
