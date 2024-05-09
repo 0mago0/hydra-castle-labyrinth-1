@@ -76,7 +76,7 @@ void App::Update() {
     m_hero->map = "map" + std::to_string(m_map->map_number) + ".txt" ;
     m_tool->SetPosition(m_hero->GetPosition()) ;
     m_tool->renw_position(m_hero->forward) ;
-    m_tool->attack(m_hero->forward,all_enemy,m_Root) ;
+    m_tool->attack(m_hero->forward,all_enemy,m_Root,m_hero->nocontrol) ;
     m_Root.Update() ;
 
 

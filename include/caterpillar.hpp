@@ -6,7 +6,9 @@
 #define REPLACE_WITH_YOUR_PROJECT_NAME_CATERPILLAR_HPP
 #include "enemy.hpp"
 #include "physics.hpp"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 class caterpillar: public enemy {
 public:
     explicit caterpillar() ;

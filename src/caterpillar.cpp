@@ -5,6 +5,8 @@
 #include "caterpillar.hpp"
 caterpillar::caterpillar() {
     //m_ZIndex = -1 ;
+
+
     if(forward == "R"){
         SetImage(Rpath,150,true) ;
     }else{
@@ -43,9 +45,10 @@ void caterpillar::attack(std::shared_ptr<hero> m_hero) {
     x = x1-x2 ;
     y = y1-y2 ;
     distance = sqrt(x*x + y*y) ;
-    if(distance < 30 && m_hero->HP > 0 ){
+    if(distance < 30 && m_hero->HP > 0 && m_hero->nocontrol == false){
         m_hero->hero_state = "attacked" ;
         m_hero->HP -= 1 ;
+        m_hero->nocontrol = true ;
         if (x2 > x1){
             m_hero->forward = "R" ;
         }else {

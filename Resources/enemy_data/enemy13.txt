@@ -1,3 +1,6 @@
-slime 0 0
-slime 100 0
-caterpillar -60 0
+caterpillar 300 -270
+caterpillar 60 -270
+caterpillar 210 -150
+caterpillar 300 -30
+caterpillar 60 -30
+caterpillar 210 90

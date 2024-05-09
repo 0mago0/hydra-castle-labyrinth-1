@@ -14,7 +14,7 @@ public:
     void move_even() override ;
     void attack(std::shared_ptr<hero> m_hero) override ;
     std::shared_ptr<ammo> Ammo = std::make_shared<ammo>("grayguntower");
-
+    void ammo_bomb_judge(float h_x,float h_y , float m_x , float m_y,std::shared_ptr<hero> m_hero) ;
     std::string forward = "R" ;
 protected:
     float distance = 0 ;

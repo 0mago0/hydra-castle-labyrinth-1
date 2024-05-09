@@ -20,7 +20,7 @@ public:
     explicit heroattack(const std::vector<std::string>& Path);
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void SetImage(const std::vector<std::string>& Path);
-    void attack(std::string forward,std::vector<std::shared_ptr<enemy>> &all_enemy,Util::Root &m_Root) ;
+    void attack(std::string forward,std::vector<std::shared_ptr<enemy>> &all_enemy,Util::Root &m_Root,bool m_hero_attacked) ;
 
     //void Draw(const Util::Transform &transform, const float zIndex) override;
     void renw_position(std::string forward) ;

@@ -29,13 +29,30 @@ void grayguntower::attack(std::shared_ptr<hero> m_hero) {
         Ammo->SetPosition({GetPosition()[0]-5,GetPosition()[1]});
         distance = 5 ;
         Ammo->play() ;
+        ammo_bomb_judge(m_hero->GetPosition()[0] , m_hero->GetPosition()[1] , Ammo->GetPosition()[0],Ammo->GetPosition()[1] , m_hero);
+        ammo_bomb_judge(m_hero->GetPosition()[0] , m_hero->GetPosition()[1] , GetPosition()[0],GetPosition()[1] , m_hero);
     }else if(distance <= 600){
         Ammo->SetPosition({Ammo->GetPosition()[0]-5,Ammo->GetPosition()[1]});
         distance += 5 ;
+        ammo_bomb_judge(m_hero->GetPosition()[0] , m_hero->GetPosition()[1] , Ammo->GetPosition()[0],Ammo->GetPosition()[1] , m_hero);
+        ammo_bomb_judge(m_hero->GetPosition()[0] , m_hero->GetPosition()[1] , GetPosition()[0],GetPosition()[1] , m_hero);
     }else{
         distance = 0 ;
     }
-
-
+}
+void grayguntower::ammo_bomb_judge(float h_x,float h_y , float m_x , float m_y,std::shared_ptr<hero> m_hero) {
+    float dist = 0 ;
+    float x = h_x - m_x ;
+    float y = h_y - m_y ;
+    dist = sqrt(x*x + y*y) ;
+     if(dist < 30 && m_hero->nocontrol == false ){
+        m_hero->hero_state = "attacked" ;
+        m_hero->HP -= 1 ;
+        if (m_x > h_x){
+            m_hero->forward = "R" ;
+        }else {
+            m_hero->forward = "L" ;
+        }
+    }
 }
 

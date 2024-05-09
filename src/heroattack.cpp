@@ -11,9 +11,9 @@ void heroattack::SetImage(const std::vector<std::string>& Path) {
     m_Drawable = std::make_shared<Util::Animation>( Path,false,70,false,0);
     m_Visible = false ;
 }
-void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> &all_enemy,Util::Root &m_Root) {
+void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> &all_enemy,Util::Root &m_Root,bool m_hero_attacked) {
     m_ZIndex = 1 ;
-    if(Util::Input::IsKeyDown(Util::Keycode::J) && already){
+    if(Util::Input::IsKeyDown(Util::Keycode::J) && already && m_hero_attacked == false ){
         already = false ;
         if(forward == "Lstay" || forward == "L"){
             SetImage(std::vector<std::string>{RESOURCE_DIR"/attack_tool/Lsword1.png",RESOURCE_DIR"/attack_tool/Lsword2.png",RESOURCE_DIR"/attack_tool/Lsword3.png",RESOURCE_DIR"/attack_tool/Lsword4.png",RESOURCE_DIR"/attack_tool/Lsword5.png"});

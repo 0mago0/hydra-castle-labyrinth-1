@@ -49,7 +49,7 @@ void Slime::attack(std::shared_ptr<hero> m_hero) {
     x = x1-x2 ;
     y = y1-y2 ;
     distance = sqrt(x*x + y*y) ;
-    if(distance < 30 && m_hero->HP > 0){
+    if(distance < 30 && m_hero->HP > 0 && m_hero->nocontrol == false){
         m_hero->hero_state = "attacked" ;
         m_hero->HP -= 1 ;
         if (x2 > x1){
