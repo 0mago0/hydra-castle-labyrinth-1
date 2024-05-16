@@ -1,0 +1,14 @@
+//
+// Created by Yihss on 2024/5/10.
+//
+
+#ifndef REPLACE_WITH_YOUR_PROJECT_NAME_PROP_HPP
+#define REPLACE_WITH_YOUR_PROJECT_NAME_PROP_HPP
+
+
+class Prop {
+
+};
+
+
+#endif //REPLACE_WITH_YOUR_PROJECT_NAME_PROP_HPP
