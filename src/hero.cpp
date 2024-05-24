@@ -10,9 +10,15 @@ void hero::run() {
     if(hero_state == "attacked"){
         Invincible = true  ;
         if((forward == "L" ||forward == "Lstay") && phase_strike_fly == 0){
+            attack_sfx = std::make_shared<Util::SFX>(RESOURCE_DIR"/Sound effects/hit02.wav");
+            attack_sfx->SetVolume(5);
+            attack_sfx->Play(0);
             SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Lattacked1.png",RESOURCE_DIR"/hero/Lattacked2.png"},5,true);
             this->SetPosition({GetPosition()[0]+5,GetPosition()[1]+3}) ;
         }else if((forward == "R" ||forward == "stay") && phase_strike_fly == 0 ) {
+            attack_sfx = std::make_shared<Util::SFX>(RESOURCE_DIR"/Sound effects/hit02.wav");
+            attack_sfx->SetVolume(5);
+            attack_sfx->Play(0);
             this->SetPosition({GetPosition()[0]-5,GetPosition()[1]+3}) ;
             SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/Rattacked1.png",RESOURCE_DIR"/hero/Rattacked2.png"},5,true);
         }
@@ -112,6 +118,9 @@ void hero::run() {
         this->SetPosition(now_XY) ;
     }
     if (Util::Input::IsKeyDown(Util::Keycode::SPACE) && hero_state == "on_ground") {
+        jump_sfx = std::make_shared<Util::SFX>(RESOURCE_DIR"/Sound effects/jump01.wav");
+        jump_sfx->SetVolume(5);
+        jump_sfx->Play(0);
         jump_total = 0 ;
         glm::vec now_XY = this->GetPosition() ;
         jump_total += 15  ;
@@ -273,6 +282,9 @@ void hero::chang_forward(){
         }
     }
     if (Util::Input::IsKeyDown(Util::Keycode::J) && hero_state != "attack_ground"  && hero_state != "attack_jump"  ){
+        m_bgm = std::make_shared<Util::SFX>(RESOURCE_DIR"/Sound effects/hero_hit.wav");
+        m_bgm->SetVolume(4);
+        m_bgm->Play(0);
         if(hero_state == "one_jump" || hero_state == "sky_down" ){
 
         }else{

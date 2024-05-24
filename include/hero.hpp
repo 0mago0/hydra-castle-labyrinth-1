@@ -9,12 +9,13 @@
 #include "Util/Animation.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
+#include "Util/BGM.hpp"
 #include "physics.hpp"
 #include "map.hpp"
 #include "heroattack.hpp"
 #include "Util/Time.hpp"
 #include <iostream>
-
+#include "Util/SFX.hpp"
 class hero: public Util::GameObject{
 public:
     void run();
@@ -33,7 +34,8 @@ public:
     bool nocontrol = false;
     bool Invincible = false ;
 private:
-
+    std::shared_ptr<Util::SFX> jump_sfx,attack_sfx;
+    std::shared_ptr<Util::SFX> m_bgm;
     float move_ytotal ,move_xtotal ;
     bool attack_state = false,R_run = false , L_run = false  ;
     bool judge_keybord =false,judge_die = false;

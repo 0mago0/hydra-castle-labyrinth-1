@@ -10,6 +10,7 @@
 #include "Util/Root.hpp"
 #include "hero.hpp"
 #include "Slime.hpp"
+#include "Prop.hpp"
 #include "caterpillar.hpp"
 #include "grayguntower.hpp"
 #include "miscellaneous.hpp"

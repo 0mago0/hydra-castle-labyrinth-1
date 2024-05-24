@@ -44,6 +44,8 @@ add_executable(${PROJECT_NAME}
         include/ammo.hpp
         src/miscellaneous.cpp
         include/miscellaneous.hpp
+        src/Prop.cpp
+        include/Prop.hpp
 )
 
 if(MSVC)

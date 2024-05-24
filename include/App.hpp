@@ -8,6 +8,8 @@
 #include "generate_enemy.hpp"
 #include "pch.hpp" // IWYU pragma: export
 #include "Util/Root.hpp"
+#include "Util/BGM.hpp"
+#include "Prop.hpp"
 class App {
 public:
     enum class State {
@@ -31,11 +33,13 @@ private:
     std::vector<std::shared_ptr<enemy>> all_enemy;//多形
     State m_CurrentState = State::START;
     Util::Root m_Root;
+    std::shared_ptr<Util::BGM> m_bgm;
     physics phy ;
     std::shared_ptr<heroattack> m_tool ;
     std::shared_ptr<hero>  m_hero ;
     std::shared_ptr<map> m_map;
     std::shared_ptr<Slime> slime;
+    std::vector<std::shared_ptr<Prop>> prop ;
 };
 
 #endif

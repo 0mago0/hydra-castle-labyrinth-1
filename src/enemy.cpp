@@ -8,6 +8,9 @@ void enemy::SetImage(const std::vector<std::string>& Path , int interval_number,
     m_Drawable = std::make_shared<Util::Animation>( Path,play,interval_number,loopting,0);
 }
 void enemy::bomb(){
+    m_sfx = std::make_shared<Util::SFX>(RESOURCE_DIR"/Sound effects/bom01.wav");
+    m_sfx->SetVolume(10);
+    m_sfx->Play(0) ;
     std::vector<std::string> s ;
     for (int j =1 ; j <= 10 ; j ++){
         s.push_back(RESOURCE_DIR"/miscellaneous/bomb" +std::to_string(j)+".png");

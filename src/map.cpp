@@ -31,7 +31,7 @@ void  map::Transitions(std::vector<float> &jump_total,Util::Root &m_Root,std::ve
         clean(m_Root,all_enemy) ;
 
     }
-    if(hero_position[0] < -476){
+    if(hero_position[0] < -470){
         hero_position = {420 , hero_position[1]} ;
         this->map_number -=1 ;
         SetImage("p" + std::to_string(map_number) + ".png" ) ;

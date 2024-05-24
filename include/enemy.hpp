@@ -9,6 +9,7 @@
 #include "Util/Animation.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
+#include "Util/SFX.hpp"
 class  hero ;
 class miscellaneous ;
 
@@ -23,11 +24,11 @@ public:
     virtual void attack(std::shared_ptr<hero> m_hero) = 0;
     virtual void move_even() = 0;
     std::string state,hp_state = "ok" ;
-
+    float map_number = 0 ;
     int HP  = 0 ;
 protected:
+    std::shared_ptr<Util::SFX>  m_sfx ;
     int attack_distance = 0 ;
-
 
 };
 

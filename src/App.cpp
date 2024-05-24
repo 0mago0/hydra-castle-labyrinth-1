@@ -7,6 +7,10 @@
 
 void App::Start() {
     LOG_TRACE("Start");
+
+    m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/Main_01.mp3");
+    m_bgm->SetVolume(5);
+    m_bgm->Play();
     generate_enemy.setpath("enemy13.txt");
     m_hero = std::make_shared<hero>(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png",RESOURCE_DIR"/hero/Rrun.png",RESOURCE_DIR"/hero/Rrun.png"});
     m_hero->SetPosition({0,-30});

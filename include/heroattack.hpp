@@ -9,6 +9,7 @@
 #include "Util/Animation.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
+#include "Util/SFX.hpp"
 #include "physics.hpp"
 #include "enemy.hpp"
 #include "map.hpp"
@@ -22,10 +23,10 @@ public:
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void SetImage(const std::vector<std::string>& Path);
     void attack(std::string forward,std::vector<std::shared_ptr<enemy>> &all_enemy,Util::Root &m_Root,bool m_hero_attacked) ;
-
     //void Draw(const Util::Transform &transform, const float zIndex) override;
     void renw_position(std::string forward) ;
 private:
+    std::shared_ptr<Util::SFX> m_sfx ; 
     bool already = true ;
     float stepx[5] = {-10,30,30,0,0} ;
     float stepy[5] = {20,0,-15,0,0} ;

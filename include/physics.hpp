@@ -20,7 +20,6 @@ public:
     std::vector<std::string> state ;
     std::vector<glm::vec2> object_position ;
     std::vector<float> jump_total ;
-private :
     int data[16][13];
 };
 

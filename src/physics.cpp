@@ -18,11 +18,11 @@ void  physics::set_data(const std::string& dataPath){
     }
 }
 void physics::collision(int index,float &x , float Lx ,  float yy , float &y){
-    if (data[int(x)][int(yy)] == 1){
+    if (data[int(x)][int(yy)] >= 1 && data[int(x)][int(yy)]!=2 && x <= 15 && x >=0){
         x -= 4.5 ;
         object_position[index][0] = object_position[index][0] - 4 ;
     }
-    if (data[int(Lx)][int(yy)] == 1){
+    if (data[int(Lx)][int(yy)] >= 1 && data[int(x)][int(yy)]!=2 && x <= 15 && x >=0 ){
         x+= 4.5 ;
         object_position[index][0] = object_position[index][0] + 4 ;
     }
