@@ -42,6 +42,21 @@ void Prop::attack(std::shared_ptr<hero> m_hero) {
         HP = 1000 ;
         SetImage({RESOURCE_DIR"/Prop/Prop_hp.png"},10,false);
     }
+    if(HP > 500 ){
+        float x1,y1,x2,y2,x,y,distance ;
+        x1 = m_hero->GetPosition()[0] ;
+        y1 = m_hero->GetPosition()[1] ;
+        x2 = GetPosition()[0] ;
+        y2 = GetPosition()[1] ;
+        x = x1-x2 ;
+        y = y1-y2 ;
+        distance = sqrt(x*x + y*y) ;
+        if(distance < 30 && m_hero->HP > 0 && m_hero->nocontrol == false){
+            m_hero->HP += 1 ;
+            m_Visible = false ;
+            SetPosition({-1000,-1000});
+        }
+    }
 }
 void Prop::move_even() {
 

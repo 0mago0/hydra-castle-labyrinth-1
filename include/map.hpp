@@ -10,6 +10,7 @@
 #include "generate_enemy.hpp"
 #include <fstream>
 #include <iostream>
+#include "clsglobal.hpp"
 class generate_enemy ;
 
 class map : public Util::GameObject {

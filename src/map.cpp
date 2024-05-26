@@ -59,6 +59,9 @@ void  map::Transitions(std::vector<float> &jump_total,Util::Root &m_Root,std::ve
     }
 }
 void map::clean(Util::Root &m_Root,std::vector<std::shared_ptr<enemy>> &all_enemy){
+    clsglobal::bricks_x.clear();
+    clsglobal::bricks_y.clear();
+    clsglobal::bricks_number.clear();
     for(int i =all_enemy.size() -1 ; i >= 0 ;i--){
         m_Root.RemoveChild(all_enemy[i]);
     }
