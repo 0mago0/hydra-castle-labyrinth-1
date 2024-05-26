@@ -26,7 +26,6 @@ void physics::collision(int index,float &x , float Lx ,  float yy , float &y){
         x+= 4.5 ;
         object_position[index][0] = object_position[index][0] + 4 ;
     }
-
     float  yx = 8 * 60 + object_position[index][0] ;
     float  yLx = 8 * 60 + object_position[index][0] - 30  ;
     int tempy = floor((6*60 - object_position[index][1]-25) / 60);

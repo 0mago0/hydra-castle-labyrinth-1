@@ -18,6 +18,12 @@ int main(int, char**) {
             case App::State::TRANS:
                 app.Trans();
                 break;
+            case App::State::gamestart:
+                app.gamestart();
+                break;
+            case App::State::GameOver:
+                app.GameOver();
+                break;
             case App::State::END:
                 app.End();
                 context->SetExit(true);

@@ -30,14 +30,13 @@ Prop::Prop() {
     m_ZIndex =21 ;
     state = "on_ground" ;
     SetImage({RESOURCE_DIR"/Prop/Prop_bricks.png"},10,false);
-    HP = 5 ;
+    HP = 2 ;
 }
 
 void Prop::attack(std::shared_ptr<hero> m_hero) {
-
     if(HP == 1){
         SetPosition({GetPosition()[0],GetPosition()[1]+30});
-        HP = 3 ;
+        HP = 1000 ;
         SetImage({RESOURCE_DIR"/Prop/Prop_hp.png"},10,false);
     }
 }

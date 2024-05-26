@@ -186,8 +186,7 @@ void hero::chang_forward(){
         }
     }else if(attack_state){
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
-
-        if(temp->GetState() == Util::Animation::State::ENDED){
+        if(temp->GetState() == Util::Animation::State::ENDED || temp->GetCurrentFrameIndex() == temp->GetFrameCount()-1){
             attack_state = false ;
             if (this->forward == "Lstay" || this->forward == "L" ){
                 if (Util::Input::IsKeyPressed(Util::Keycode::A) ){
@@ -204,7 +203,6 @@ void hero::chang_forward(){
             }
             temp->Play() ;
             temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
-
             temp->Play() ;
         }
     }
@@ -281,7 +279,7 @@ void hero::chang_forward(){
             temp->Play() ;
         }
     }
-    if (Util::Input::IsKeyDown(Util::Keycode::J) && hero_state != "attack_ground"  && hero_state != "attack_jump"  ){
+    if (Util::Input::IsKeyDown(Util::Keycode::J) && hero_state != "attack_ground"  && hero_state != "attack_jump" && !attack_state  ){
         m_bgm = std::make_shared<Util::SFX>(RESOURCE_DIR"/Sound effects/hero_hit.wav");
         m_bgm->SetVolume(4);
         m_bgm->Play(0);

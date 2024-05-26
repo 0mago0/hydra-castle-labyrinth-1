@@ -27,7 +27,7 @@ public:
     void renw_position(std::string forward) ;
 private:
     std::shared_ptr<Util::SFX> m_sfx ; 
-    bool already = true ;
+    bool already = true ,already_attack = false;
     float stepx[5] = {-10,30,30,0,0} ;
     float stepy[5] = {20,0,-15,0,0} ;
 };

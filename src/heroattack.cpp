@@ -24,9 +24,10 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
         m_Visible = true ;
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
         temp->Play();
-    }else if(!already){
+    }else if(!already && !already_attack){
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
         if(temp->GetCurrentFrameIndex() == 1 ){
+            already_attack = true;
             for(int i = all_enemy.size()-1 ; i >=0 ; i--){
                 float x1,y1,x2,y2,X,Y ;
                 x1 = all_enemy[i]->GetPosition()[0] + 10;
@@ -52,6 +53,7 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
     auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
     if(temp->GetState() == Util::Animation::State::ENDED){
         already = true ;
+        already_attack = false ;
     }
 }
 

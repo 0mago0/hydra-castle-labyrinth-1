@@ -12,7 +12,7 @@ caterpillar::caterpillar() {
     }else{
         SetImage(Lpath,150,true) ;
     }
-    HP = 10 ;
+    HP = 2 ;
     //  SetPosition({0,-60}) ;
     state = "on_ground" ;
 }

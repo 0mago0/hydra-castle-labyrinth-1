@@ -5,6 +5,20 @@
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
 
+
+void App::gamestart(){
+    LOG_TRACE("gamestart");
+    auto startScreen = std::make_shared<Util::GameObject>();
+    startScreen->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/app/start_background.png"));
+    m_Root.AddChild(startScreen);
+    m_Root.Update();
+    if (Util::Input::IsKeyDown(Util::Keycode::SPACE)) {
+        m_CurrentState = State::START;
+        m_Root.RemoveChild(startScreen);
+        m_Root.Update();
+    }
+}
+
 void App::Start() {
     LOG_TRACE("Start");
 
@@ -81,6 +95,9 @@ void App::Update() {
     m_tool->SetPosition(m_hero->GetPosition()) ;
     m_tool->renw_position(m_hero->forward) ;
     m_tool->attack(m_hero->forward,all_enemy,m_Root,m_hero->nocontrol) ;
+    if (Util::Input::IsKeyDown(Util::Keycode::ESCAPE)) {
+        m_CurrentState = State::END ;
+    }
     m_Root.Update() ;
 
 
@@ -100,6 +117,14 @@ void App::Trans(){
     m_CurrentState = State::UPDATE ;
     m_Root.Update() ;
 };
+
+void App::GameOver() {
+    auto gameOverScreen = std::make_shared<Util::Image>(RESOURCE_DIR"/app/game_over_background.png");
+    gameOverScreen->Draw({{0, 0}, 0, {1, 1}}, 0);
+    if (Util::Input::IsKeyDown(Util::Keycode::ESCAPE)) {
+        m_CurrentState = State::END ;
+    }
+}
 void App::End() { // NOLINT(this method will mutate members in the future)
     LOG_TRACE("End");
 }
