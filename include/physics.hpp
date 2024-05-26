@@ -8,6 +8,7 @@
 #include "map.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
+#include "clsglobal.hpp"
 class physics {
 public:
 

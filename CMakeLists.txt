@@ -46,6 +46,10 @@ add_executable(${PROJECT_NAME}
         include/miscellaneous.hpp
         src/Prop.cpp
         include/Prop.hpp
+        src/gas.cpp
+        include/gas.hpp
+        src/clsglobal.cpp
+        include/clsglobal.hpp
 )
 
 if(MSVC)

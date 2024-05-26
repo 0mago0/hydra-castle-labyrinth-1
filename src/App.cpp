@@ -25,15 +25,15 @@ void App::Start() {
     m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/Main_01.mp3");
     m_bgm->SetVolume(5);
     m_bgm->Play();
-    generate_enemy.setpath("enemy13.txt");
+    generate_enemy.setpath("enemy11.txt");
     m_hero = std::make_shared<hero>(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png",RESOURCE_DIR"/hero/Rrun.png",RESOURCE_DIR"/hero/Rrun.png"});
     m_hero->SetPosition({0,-30});
     m_hero->hero_state = "on_ground" ;
     m_Root.AddChild(m_hero);
-    phy.set_data("map13.txt");
-    m_hero->map = "map13.txt" ;
-    m_map = std::make_shared<map>("p13.png","map13.txt");
-    m_map->map_number = 13 ;
+    phy.set_data("map11.txt");
+    m_hero->map = "map11.txt" ;
+    m_map = std::make_shared<map>("p11.png","map11.txt");
+    m_map->map_number = 11 ;
     m_Root.AddChild(m_map);
     m_CurrentState = State::UPDATE;
     m_tool = std::make_shared<heroattack>(std::vector<std::string>{RESOURCE_DIR"/attack_tool/sword1.png",RESOURCE_DIR"/attack_tool/sword2.png",RESOURCE_DIR"/attack_tool/sword3.png",RESOURCE_DIR"/attack_tool/sword4.png",RESOURCE_DIR"/attack_tool/sword5.png"});
@@ -75,16 +75,19 @@ void App::Update() {
     phy.state.push_back(m_hero->hero_state) ;
 
     for(size_t i = 0 ; i < all_enemy.size() ; i ++){
-        phy.object_position.push_back(all_enemy[i]->GetPosition()) ;
-        phy.state.push_back(all_enemy[i]->state) ;
-        phy.jump_total.push_back(0);
+            phy.object_position.push_back(all_enemy[i]->GetPosition()) ;
+            phy.state.push_back(all_enemy[i]->state) ;
+            phy.jump_total.push_back(0);
     }
     phy.in_sky_down();
     m_hero->hero_state = phy.get_state(0);
     m_hero->SetPosition(phy.object_position[0]);
     for(size_t i = 0 ; i < all_enemy.size() ; i ++) {
-        all_enemy[i]->state = phy.get_state(i + 1);
-        all_enemy[i]->SetPosition(phy.object_position[i + 1]);
+        if(!(all_enemy[i]->enemy_name == "prob" && all_enemy[i]->HP >= 2 && all_enemy[i]->HP < 500)){
+            all_enemy[i]->state = phy.get_state(i + 1);
+            all_enemy[i]->SetPosition(phy.object_position[i + 1]);
+        }
+
     }
     phy.state.clear() ;
     m_map->hero_position = m_hero->GetPosition() ;

@@ -28,6 +28,7 @@ const std::vector<std::string> Prop::split(const std::string &str, const std::st
 
 Prop::Prop() {
     m_ZIndex =21 ;
+    enemy_name = "prob";
     state = "on_ground" ;
     SetImage({RESOURCE_DIR"/Prop/Prop_bricks.png"},10,false);
     HP = 2 ;
@@ -35,6 +36,8 @@ Prop::Prop() {
 
 void Prop::attack(std::shared_ptr<hero> m_hero) {
     if(HP == 1){
+        clsglobal::bricks_x.erase(clsglobal::bricks_x.begin()+number);
+        clsglobal::bricks_y.erase(clsglobal::bricks_y.begin()+number);
         SetPosition({GetPosition()[0],GetPosition()[1]+30});
         HP = 1000 ;
         SetImage({RESOURCE_DIR"/Prop/Prop_hp.png"},10,false);

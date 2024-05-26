@@ -60,12 +60,15 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
             Grayguntower->Ammo->SetPosition({std::stof(data[1]),std::stof(data[2])});
             temp->AddChild(Grayguntower->Ammo);
             temp->AddChild(Grayguntower->m_miscellaneous );
-
             all_enemy.push_back(Grayguntower) ;
             m_Root.AddChild(temp) ;
         }
         if(data[0] == "prob"){
             std::shared_ptr<Prop> prob = std::make_shared<Prop>() ;
+            prob->number = std::stoi(data[5]) - 1 ;
+            clsglobal::bricks_number.push_back(prob->number);
+            clsglobal::bricks_x.push_back(std::stoi(data[3]));
+            clsglobal::bricks_y.push_back(std::stoi(data[4]));
             prob->SetPosition({std::stof(data[1]),std::stof(data[2])});
             prob->m_miscellaneous = std::make_shared<miscellaneous>("attack_miscellaneous");
             std::vector<std::string> ss = split(this ->path, "enemy");
@@ -74,6 +77,15 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
             auto temp = std::dynamic_pointer_cast<Util::GameObject>(prob) ;
             temp->AddChild(prob->m_miscellaneous );
             all_enemy.push_back(prob) ;
+            m_Root.AddChild(temp) ;
+        }
+        if(data[0] == "gas"){
+            std::shared_ptr<gas> Gas = std::make_shared<gas>() ;
+            Gas->SetPosition({std::stof(data[1]),std::stof(data[2])});
+            Gas->m_miscellaneous = std::make_shared<miscellaneous>("attack_miscellaneous");
+            auto temp = std::dynamic_pointer_cast<Util::GameObject>(Gas) ;
+            temp->AddChild(Gas->m_miscellaneous );
+            all_enemy.push_back(Gas) ;
             m_Root.AddChild(temp) ;
         }
     }

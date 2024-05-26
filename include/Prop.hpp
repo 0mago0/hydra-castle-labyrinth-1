@@ -9,13 +9,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+#include "clsglobal.hpp"
 class Prop: public enemy{
 public:
     explicit Prop() ;
     void attack(std::shared_ptr<hero> m_hero) override ;
     void move_even() override ;
     const std::vector<std::string> split(const std::string& str, const std::string& pattern) ;
+    int number ;
 };
 
 

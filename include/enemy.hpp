@@ -23,7 +23,7 @@ public:
     Util::Animation::State Getplaystate() ;
     virtual void attack(std::shared_ptr<hero> m_hero) = 0;
     virtual void move_even() = 0;
-    std::string state,hp_state = "ok" ;
+    std::string state,hp_state = "ok",enemy_name ;
     float map_number = 0 ;
     int HP  = 0 ;
 protected:
