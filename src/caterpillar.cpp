@@ -5,6 +5,8 @@
 #include "caterpillar.hpp"
 caterpillar::caterpillar() {
     //m_ZIndex = -1 ;
+
+
     if(forward == "R"){
         SetImage(Rpath,150,true) ;
     }else{

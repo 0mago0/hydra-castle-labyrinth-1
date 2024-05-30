@@ -4,6 +4,9 @@
 #include "physics.hpp"
 #include "hero.hpp"
 void hero::run() {
+    if(hero_state == "on_ground"){
+        two_jump = true;
+    }
     if(judge_die){
         return ;
     }
@@ -117,7 +120,7 @@ void hero::run() {
         now_XY[0] = now_XY[0] + 4 ;
         this->SetPosition(now_XY) ;
     }
-    if (Util::Input::IsKeyDown(Util::Keycode::SPACE) && hero_state == "on_ground") {
+    if (Util::Input::IsKeyDown(Util::Keycode::SPACE) && (hero_state == "on_ground" ||  (two_jump_shoes && two_jump)) && hero_state != "climb_ladder" ) {
         jump_sfx = std::make_shared<Util::SFX>(RESOURCE_DIR"/Sound effects/jump01.wav");
         jump_sfx->SetVolume(5);
         jump_sfx->Play(0);
@@ -126,16 +129,19 @@ void hero::run() {
         jump_total += 15  ;
         now_XY[1] = now_XY[1] + 15 ;
         this->SetPosition(now_XY) ;
+        if(hero_state != "on_ground"){
+            two_jump = false ;
+        }
         hero_state = "one_jump" ;
     }
-     if(Util::Input::IsKeyPressed(Util::Keycode::SPACE) && jump_total <= 130 && hero_state == "one_jump"){
+    if(Util::Input::IsKeyPressed(Util::Keycode::SPACE) && jump_total <= 130 && hero_state == "one_jump"){
         glm::vec now_XY = this->GetPosition() ;
-         jump_total += 8  ;
+        jump_total += 8  ;
         now_XY[1] = now_XY[1] + 8 ;
         this->SetPosition(now_XY) ;
-     }else if(jump_total > 130 && hero_state == "one_jump" ){
-         hero_state = "sky_down" ;
-     }
+    }else if(jump_total > 130 && hero_state == "one_jump" ){
+        hero_state = "sky_down" ;
+    }
     if(Util::Input::IsKeyUp(Util::Keycode::SPACE)&& hero_state == "one_jump" ){
         hero_state = "sky_down" ;
     }

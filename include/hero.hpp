@@ -34,6 +34,7 @@ public:
     bool nocontrol = false;
     bool Invincible = false ;
 private:
+    bool two_jump_shoes = true , two_jump = true ;
     std::shared_ptr<Util::SFX> jump_sfx,attack_sfx;
     std::shared_ptr<Util::SFX> m_bgm;
     float move_ytotal ,move_xtotal ;

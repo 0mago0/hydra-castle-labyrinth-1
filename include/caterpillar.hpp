@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <random>
+
 class caterpillar: public enemy {
 public:
     explicit caterpillar() ;
