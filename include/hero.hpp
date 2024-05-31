@@ -30,9 +30,12 @@ public:
     std::string  hero_state ;
     std::string map ;
     std::string forward ;
+
     int HP = 10 ;
+
     bool nocontrol = false;
-    bool Invincible = false ;
+    bool Invincible = false,over_trans = false  ;
+
 private:
     bool two_jump_shoes = true , two_jump = true ;
     std::shared_ptr<Util::SFX> jump_sfx,attack_sfx;
