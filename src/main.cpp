@@ -11,7 +11,6 @@ int main(int, char**) {
             case App::State::START:
                 app.Start();
                 break;
-
             case App::State::UPDATE:
                 app.Update();
                 break;
