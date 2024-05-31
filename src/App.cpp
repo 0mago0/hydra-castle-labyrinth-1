@@ -103,8 +103,9 @@ void App::Update() {
     if (Util::Input::IsKeyDown(Util::Keycode::ESCAPE)) {
         m_CurrentState = State::END ;
     }
+    if (m_hero->HP<=0){
+        m_CurrentState = State::GameOver;}
     m_Root.Update() ;
-
 
     //m_map.SetImage("p1.png") ;
     //TODO: do your things here and delete this line <3
