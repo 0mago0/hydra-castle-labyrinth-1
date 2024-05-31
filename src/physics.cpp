@@ -32,10 +32,10 @@ void physics::collision(int index,float &x , float Lx ,  float yy , float &y){
     int butty = floor((6*60 - object_position[index][1]+30) / 60);
     yx = ceil(yx / 60) ;
     yLx = ceil(yLx / 60) ;
-    if (data[int(yx-1)][tempy] == 1 && data[int(yx-1)][butty] == 0 ){
+    if (data[int(yx-1)][tempy] == 1 && (data[int(yx-1)][butty] == 0 || data[int(yx-1)][butty] == -2) ){
        // y -= 8.5 ;
            object_position[index][1] = object_position[index][1] - 8 ;
-    }else if (data[int(yLx)][tempy] == 1&& data[int(yx-1)][butty] == 0){
+    }else if (data[int(yLx)][tempy] == 1&& (data[int(yx-1)][butty] == 0 || data[int(yx-1)][butty] == -2)){
        // y -= 8.5 ;
         object_position[index][1] = object_position[index][1] - 8 ;
     }

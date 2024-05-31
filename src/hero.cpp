@@ -8,6 +8,10 @@ void hero::run() {
         two_jump = true;
     }
     if(judge_die){
+        auto temp =std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
+        if(temp->GetState() == Util::Animation::State::ENDED){
+            over_trans = true ;
+        }
         return ;
     }
     if(hero_state == "attacked"){
