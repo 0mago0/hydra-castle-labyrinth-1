@@ -37,7 +37,7 @@ void App::Start() {
         const auto& obj = std::make_shared<Util::GameObject>();
         obj->SetDrawable(image);
         init_pos += offset_pos;
-        obj ->m_Transform.scale = glm::vec2{3.2, 2.8};
+        obj ->m_Transform.scale = glm::vec2{3.2, 2.7};
         obj->m_Transform.translation = init_pos;
         obj->SetZIndex(40);
         m_Root.AddChild(obj);
