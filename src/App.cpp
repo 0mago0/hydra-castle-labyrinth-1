@@ -52,7 +52,9 @@ void App::Start() {
 //    m_Root.RemoveChild(temp);
 }
 
+// hello 
 void App::Update() {
+    LOG_INFO(1 / Util::Time::GetDeltaTime());
     m_hero->run() ;
     phy.object_position.push_back(m_hero->GetPosition()) ;
     if(phy.jump_total.empty()){
@@ -101,11 +103,12 @@ void App::Update() {
     if (Util::Input::IsKeyDown(Util::Keycode::ESCAPE)) {
         m_CurrentState = State::END ;
     }
+
     if (m_hero->HP <= 0 && m_hero->over_trans) {
         m_CurrentState = State::GameOver ;  // 退出更新循环，游戏结束
     }
-    m_Root.Update() ;
 
+    m_Root.Update() ;
 
     //m_map.SetImage("p1.png") ;
     //TODO: do your things here and delete this line <3

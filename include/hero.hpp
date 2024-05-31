@@ -30,7 +30,9 @@ public:
     std::string  hero_state ;
     std::string map ;
     std::string forward ;
-    int HP = 200 ;
+
+    int HP = 10 ;
+
     bool nocontrol = false;
     bool Invincible = false,over_trans = false  ;
 
