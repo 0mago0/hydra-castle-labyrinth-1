@@ -53,6 +53,7 @@ void App::Start() {
 }
 
 void App::Update() {
+    LOG_INFO(1 / Util::Time::GetDeltaTime());
     m_hero->run() ;
     phy.object_position.push_back(m_hero->GetPosition()) ;
     if(phy.jump_total.empty()){
