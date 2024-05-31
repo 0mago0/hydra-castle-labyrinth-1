@@ -52,6 +52,7 @@ void App::Start() {
 //    m_Root.RemoveChild(temp);
 }
 
+// hello 
 void App::Update() {
     LOG_INFO(1 / Util::Time::GetDeltaTime());
     m_hero->run() ;
