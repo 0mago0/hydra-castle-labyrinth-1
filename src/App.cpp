@@ -21,7 +21,37 @@ void App::gamestart(){
 
 void App::Start() {
     LOG_TRACE("Start");
+    //血量
+    const auto& image = std::make_shared<Util::Image>(RESOURCE_DIR "/app/heart.png");
+    const auto& ooo = std::make_shared<Util::GameObject>();
+    ooo->SetDrawable(image);
+    ooo ->m_Transform.scale = glm::vec2{3, 3};
+    ooo->m_Transform.translation =  glm::vec2{-220, 300};
+    ooo->SetZIndex(30);
+    m_Root.AddChild(ooo);
+    auto&& init_pos = glm::vec2{-385, 327};
+    auto&& offset_pos = glm::vec2{38, 0};
+    //auto&& list = std::vector<std::shared_ptr<Util::GameObject>>();
+    for (auto&& i = 0; i<10 ;i ++) {
+        const auto& image = std::make_shared<Util::Image>(RESOURCE_DIR "/app/123.png");
+        const auto& obj = std::make_shared<Util::GameObject>();
+        obj->SetDrawable(image);
+        init_pos += offset_pos;
+        obj ->m_Transform.scale = glm::vec2{3.2, 2.8};
+        obj->m_Transform.translation = init_pos;
+        obj->SetZIndex(40);
+        m_Root.AddChild(obj);
+        list.push_back(obj);
+    }
 
+
+    //obj->SetVisable(false);
+   // const auto& image = std::make_shared<Util::Image>(RESOURCE_DIR "/app/giraffe.png");
+    //const auto& obj = std::make_shared<Util::GameObject>();
+    //obj->SetDrawable(image);
+   // obj->m_Transform.translation = glm::vec2{-400, 260};
+   // obj->SetZIndex(30);
+   // m_Root.AddChild(obj);
     m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/Main_01.mp3");
     m_bgm->SetVolume(5);
     m_bgm->Play();
@@ -39,8 +69,10 @@ void App::Start() {
     m_tool = std::make_shared<heroattack>(std::vector<std::string>{RESOURCE_DIR"/attack_tool/sword1.png",RESOURCE_DIR"/attack_tool/sword2.png",RESOURCE_DIR"/attack_tool/sword3.png",RESOURCE_DIR"/attack_tool/sword4.png",RESOURCE_DIR"/attack_tool/sword5.png"});
     m_Root.AddChild(m_tool) ;
 
-    generate_enemy.generat(m_Root,all_enemy) ;
 
+
+
+    generate_enemy.generat(m_Root,all_enemy) ;
 //    std::shared_ptr<caterpillar> Caterpillar = std::make_shared<caterpillar>() ;
 //    auto temp = std::dynamic_pointer_cast<Util::GameObject>(Caterpillar) ;
 //     slime = std::make_shared<Slime>() ;
@@ -54,7 +86,127 @@ void App::Start() {
 
 // hello 
 void App::Update() {
-    LOG_INFO(1 / Util::Time::GetDeltaTime());
+    //LOG_INFO(1 / Util::Time::GetDeltaTime());
+    LOG_INFO("{}, {}", m_hero->HP, hp);
+    if (m_hero->HP != hp && m_hero->HP == 10 && status[9] == false) {
+        status[9] = true;
+        list[9] -> SetVisible(true);
+    }
+    if (m_hero->HP != hp && m_hero->HP == 9 && status[8] == false) {
+        status[8] = true;
+        list[8] -> SetVisible(true);
+    }
+    if (m_hero->HP != hp && m_hero->HP == 8 && status[7] == false) {
+        status[7] = true;
+        list[7] -> SetVisible(true);
+    }
+    if (m_hero->HP != hp && m_hero->HP == 7 && status[6] == false) {
+        status[6] = true;
+        list[6] -> SetVisible(true);
+    }
+    if (m_hero->HP != hp && m_hero->HP == 6 && status[5] == false) {
+        status[5] = true;
+        list[5] -> SetVisible(true);
+    }
+    if (m_hero->HP != hp && m_hero->HP == 5 && status[4] == false) {
+        status[4] = true;
+        list[4] -> SetVisible(true);
+    }
+    if (m_hero->HP != hp && m_hero->HP == 4 && status[3] == false) {
+        status[3] = true;
+        list[3] -> SetVisible(true);
+    }
+    if (m_hero->HP != hp && m_hero->HP == 3 && status[2] == false) {
+        status[2] = true;
+        list[2] -> SetVisible(true);
+    }
+    if (m_hero->HP != hp && m_hero->HP == 2 && status[1] == false) {
+        status[1] = true;
+        list[1] -> SetVisible(true);
+    }
+    if (m_hero->HP != hp && m_hero->HP == 1 && status[0] == false) {
+        status[0] = true;
+        list[0] -> SetVisible(true);
+    }
+    if (m_hero->HP == 0 ){
+        list [0] -> SetVisible(false);
+        status[0] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+    }
+
+    if (m_hero->HP == 1 ){
+        list [1] -> SetVisible(false);
+        status[1] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+
+    }
+
+    if (m_hero->HP == 2 ){
+        list [2] -> SetVisible(false);
+        status[2] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+    }
+
+    if (m_hero->HP == 3 ){
+        list [3] -> SetVisible(false);
+        status[3] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+    }
+
+    if (m_hero->HP == 4 ){
+        list [4] -> SetVisible(false);
+        status[4] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+    }
+
+    if (m_hero->HP == 5 ){
+        list [5] -> SetVisible(false);
+        status[5] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+    }
+
+    if (m_hero->HP == 6 ){
+        list [6] -> SetVisible(false);
+        status[6] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+    }
+
+    if (m_hero->HP == 7 ){
+        list [7] -> SetVisible(false);
+        status[7] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+    }
+
+    if (m_hero->HP == 8 ){
+        list [8] -> SetVisible(false);
+        status[8] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+    }
+    if (m_hero->HP == 9 ){
+        list [9] -> SetVisible(false);
+        status[9] = false;
+        if (hp - m_hero->HP == 1) {
+            hp = m_hero->HP;
+        }
+    }
     m_hero->run() ;
     phy.object_position.push_back(m_hero->GetPosition()) ;
     if(phy.jump_total.empty()){
@@ -130,6 +282,7 @@ void App::Trans(){
 void App::GameOver() {
     auto gameOverScreen = std::make_shared<Util::Image>(RESOURCE_DIR"/app/game_over_background.png");
     gameOverScreen->Draw({{0, 0}, 0, {1, 1}}, 0);
+
     if (Util::Input::IsKeyDown(Util::Keycode::ESCAPE)) {
         m_CurrentState = State::END ;
     }

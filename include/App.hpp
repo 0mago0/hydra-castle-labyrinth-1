@@ -20,7 +20,8 @@ public:
         UPDATE,
         END,
     };
-
+    std::vector<std::shared_ptr<Util::GameObject>> list;
+    std::vector<bool> status = {true, true, true, true, true, true, true, true, true, true };
     State GetCurrentState() const { return m_CurrentState; }
     void GameOver();
     void gamestart();
@@ -28,6 +29,7 @@ public:
     void Update();
     void End(); // NOLINT(readability-convert-member-functions-to-static)
     void Trans() ;
+    int hp = 10;
 private:
     void ValidTask();
 

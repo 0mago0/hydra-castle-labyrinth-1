@@ -53,7 +53,7 @@ void Prop::attack(std::shared_ptr<hero> m_hero) {
         y = y1-y2 ;
         distance = sqrt(x*x + y*y) ;
         if(distance < 30 && m_hero->HP > 0 && m_hero->nocontrol == false){
-            m_hero->HP += 1 ;
+            m_hero->HP = m_hero->HP + 1 > 10  ? 10 :m_hero->HP + 1;
             m_Visible = false ;
             SetPosition({-1000,-1000});
         }
