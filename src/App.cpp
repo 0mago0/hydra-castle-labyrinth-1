@@ -21,37 +21,25 @@ void App::gamestart(){
 
 void App::Start() {
     LOG_TRACE("Start");
+//開始遊戲後動畫
+    black = std::make_shared<Util::GameObject>();
+    black->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/app/111.png"));
+    black ->m_Transform.scale = glm::vec2{10, 1};
+    black->m_Transform.translation =  glm::vec2{0, 640};
+    black->SetZIndex(99);
+    m_Root.AddChild(black);
     //血量
 
-    const auto& image = std::make_shared<Util::Image>(RESOURCE_DIR "/app/heart.png");
-    const auto& ooo = std::make_shared<Util::GameObject>();
-    ooo->SetDrawable(image);
-    ooo ->m_Transform.scale = glm::vec2{3, 3};
-    ooo->m_Transform.translation =  glm::vec2{-220, 300};
-    ooo->SetZIndex(30);
-    m_Root.AddChild(ooo);
-    auto&& init_pos = glm::vec2{-385, 327};
-    auto&& offset_pos = glm::vec2{38, 0};
-    //auto&& list = std::vector<std::shared_ptr<Util::GameObject>>();
-    for (auto&& i = 0; i<10 ;i ++) {
-        const auto& image = std::make_shared<Util::Image>(RESOURCE_DIR "/app/123.png");
-        const auto& obj = std::make_shared<Util::GameObject>();
-        obj->SetDrawable(image);
-        init_pos += offset_pos;
-        obj ->m_Transform.scale = glm::vec2{3.2, 2.7};
-        obj->m_Transform.translation = init_pos;
-        obj->SetZIndex(40);
-        m_Root.AddChild(obj);
-        list.push_back(obj);
-    }
+
+
 
 //    const auto& image = std::make_shared<Util::Image>(RESOURCE_DIR "/app/heart.png");
-//    const auto& ooo = std::make_shared<Util::GameObject>();
-//    ooo->SetDrawable(image);
-//    ooo ->m_Transform.scale = glm::vec2{3, 3};
-//    ooo->m_Transform.translation =  glm::vec2{-220, 300};
-//    ooo->SetZIndex(30);
-//    m_Root.AddChild(ooo);
+//    const auto& HP_box = std::make_shared<Util::GameObject>();
+//    HP_box->SetDrawable(image);
+//    HP_box ->m_Transform.scale = glm::vec2{3, 3};
+//    HP_box->m_Transform.translation =  glm::vec2{-220, 300};
+//    HP_box->SetZIndex(30);
+//    m_Root.AddChild(HP_box);
 //    auto&& init_pos = glm::vec2{-385, 327};
 //    auto&& offset_pos = glm::vec2{38, 0};
 //    //auto&& list = std::vector<std::shared_ptr<Util::GameObject>>();
@@ -66,6 +54,8 @@ void App::Start() {
 //        m_Root.AddChild(obj);
 //        list.push_back(obj);
 //    }
+
+
 
 
 
@@ -84,6 +74,7 @@ void App::Start() {
     m_hero->SetPosition({0,-30});
     m_hero->hero_state = "on_ground" ;
     m_Root.AddChild(m_hero);
+    m_hero->SetZIndex(80);
     phy.set_data("map3.txt");
     m_hero->map = "map3.txt" ;
     m_map = std::make_shared<map>("p3.png","map3.txt");
@@ -92,9 +83,6 @@ void App::Start() {
     m_CurrentState = State::UPDATE;
     m_tool = std::make_shared<heroattack>(std::vector<std::string>{RESOURCE_DIR"/attack_tool/sword1.png",RESOURCE_DIR"/attack_tool/sword2.png",RESOURCE_DIR"/attack_tool/sword3.png",RESOURCE_DIR"/attack_tool/sword4.png",RESOURCE_DIR"/attack_tool/sword5.png"});
     m_Root.AddChild(m_tool) ;
-
-
-
 
     generate_enemy.generat(m_Root,all_enemy) ;
 //    std::shared_ptr<caterpillar> Caterpillar = std::make_shared<caterpillar>() ;
@@ -114,6 +102,7 @@ void App::Update() {
    // LOG_INFO(1 / Util::Time::GetDeltaTime());
 
     //LOG_INFO(1 / Util::Time::GetDeltaTime());
+
 //    LOG_INFO("{}, {}", m_hero->HP, hp);
 //    if (m_hero->HP != hp && m_hero->HP == 10 && status[9] == false) {
 //        status[9] = true;
@@ -234,6 +223,13 @@ void App::Update() {
 //        }
 //    }
 
+    LOG_INFO("{}, {}", m_hero->HP, hp);
+    scale_x = scale_x <= 0 ? 0 : scale_x - 0.025;
+    black->m_Transform.scale = glm::vec2({10,scale_x});
+
+
+
+
     m_hero->run() ;
     phy.object_position.push_back(m_hero->GetPosition()) ;
     if(phy.jump_total.empty()){
@@ -310,9 +306,14 @@ void App::GameOver() {
     auto gameOverScreen = std::make_shared<Util::Image>(RESOURCE_DIR"/app/game_over_background.png");
     gameOverScreen->Draw({{0, 0}, 0, {1, 1}}, 0);
 
+    if (Util::Input::IsKeyDown(Util::Keycode::SPACE)) {
+        m_CurrentState = State::RESTART ;
+    }
     if (Util::Input::IsKeyDown(Util::Keycode::ESCAPE)) {
         m_CurrentState = State::END ;
     }
+
+
 }
 void App::End() { // NOLINT(this method will mutate members in the future)
     LOG_TRACE("End");

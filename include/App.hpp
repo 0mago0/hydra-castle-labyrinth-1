@@ -13,6 +13,7 @@
 class App {
 public:
     enum class State {
+        RESTART,
         GameOver,
         gamestart,
         START,
@@ -21,8 +22,12 @@ public:
         END,
     };
     std::vector<std::shared_ptr<Util::GameObject>> list;
+    std::vector<std::shared_ptr<Util::GameObject>> list1;
+    std::shared_ptr<Util::GameObject> black;
+    float scale_x = 3;
     std::vector<bool> status = {true, true, true, true, true, true, true, true, true, true };
     State GetCurrentState() const { return m_CurrentState; }
+
     void GameOver();
     void gamestart();
     void Start();
