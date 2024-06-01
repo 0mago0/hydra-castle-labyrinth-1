@@ -37,8 +37,8 @@ Prop::Prop() {
 void Prop::attack(std::shared_ptr<hero> m_hero) {
     if(HP == 1){
         // 在打第二格方塊的時候似乎會越界刪除錯誤index的值
-        clsglobal::bricks_x.erase(clsglobal::bricks_x.begin()+number);
-        clsglobal::bricks_y.erase(clsglobal::bricks_y.begin()+number);
+        clsglobal::bricks_number[number] = 0 ;
+
         SetPosition({GetPosition()[0],GetPosition()[1]+30});
         HP = 1000 ;
         SetImage({RESOURCE_DIR"/Prop/Prop_hp.png"},10,false);

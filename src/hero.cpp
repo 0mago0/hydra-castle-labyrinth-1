@@ -36,12 +36,13 @@ void hero::run() {
         }
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
         temp->Play();
-        move_xtotal +=5 ;
-        move_ytotal += 3 ;
-        if(move_xtotal >= 80 && move_ytotal >= 60){
+
+        if(move_xtotal >= 80 && move_ytotal >= 60 && phase_strike_fly < 2){
             move_xtotal = 0 ;
-            move_ytotal = 0 ;
             hero_state = "sky_down" ;
+        }else{
+            move_xtotal +=5 ;
+            move_ytotal += 3 ;
         }
         phase_strike_fly = 1 ;
         judge_keybord = false ;
@@ -72,6 +73,7 @@ void hero::run() {
             }else{
                 this->SetImage(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png" ,RESOURCE_DIR"/hero/Rrun.png" }) ;
             }
+            move_ytotal = 0 ;
             auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable) ;
             phase_strike_fly = 0 ;
             nocontrol = false ;

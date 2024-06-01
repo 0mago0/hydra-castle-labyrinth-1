@@ -42,7 +42,7 @@ void physics::collision(int index,float &x , float Lx ,  float yy , float &y){
 }
 void  physics::in_sky_down() {
     for(int i = 0 ; i < clsglobal::bricks_x.size();i++){
-        data[clsglobal::bricks_x[i]][clsglobal::bricks_y[i]] = 3 ;
+        data[clsglobal::bricks_x[i]][clsglobal::bricks_y[i]] = clsglobal::bricks_number[i] ;
     }
     for(size_t i = 0 ; i < object_position.size() ; i++){
         float yy =6*60 - (ceil(object_position[i][1]) - 25 );

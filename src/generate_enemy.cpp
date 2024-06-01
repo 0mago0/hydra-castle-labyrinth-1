@@ -66,7 +66,7 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
         if(data[0] == "prob"){
             std::shared_ptr<Prop> prob = std::make_shared<Prop>() ;
             prob->number = std::stoi(data[5]) - 1 ;
-            clsglobal::bricks_number.push_back(prob->number);
+            clsglobal::bricks_number.push_back(3);
             clsglobal::bricks_x.push_back(std::stoi(data[3]));
             clsglobal::bricks_y.push_back(std::stoi(data[4]));
             prob->SetPosition({std::stof(data[1]),std::stof(data[2])});
