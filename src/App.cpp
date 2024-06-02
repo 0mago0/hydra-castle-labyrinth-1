@@ -24,7 +24,7 @@ void App::Start() {
 //開始遊戲後動畫
     black = std::make_shared<Util::GameObject>();
     black->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/app/111.png"));
-    black ->m_Transform.scale = glm::vec2{10, 1};
+    black->m_Transform.scale = glm::vec2{10, 1};
     black->m_Transform.translation =  glm::vec2{0, 640};
     black->SetZIndex(99);
     m_Root.AddChild(black);
@@ -54,11 +54,6 @@ void App::Start() {
 //        m_Root.AddChild(obj);
 //        list.push_back(obj);
 //    }
-
-
-
-
-
     //obj->SetVisable(false);
    // const auto& image = std::make_shared<Util::Image>(RESOURCE_DIR "/app/giraffe.png");
     //const auto& obj = std::make_shared<Util::GameObject>();
@@ -223,13 +218,9 @@ void App::Update() {
 //        }
 //    }
 
-    LOG_INFO("{}, {}", m_hero->HP, hp);
+   // LOG_INFO("{}, {}", m_hero->HP, hp);
     scale_x = scale_x <= 0 ? 0 : scale_x - 0.025;
     black->m_Transform.scale = glm::vec2({10,scale_x});
-
-
-
-
     m_hero->run() ;
     phy.object_position.push_back(m_hero->GetPosition()) ;
     if(phy.jump_total.empty()){
