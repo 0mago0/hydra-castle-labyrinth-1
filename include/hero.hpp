@@ -31,7 +31,7 @@ public:
     std::string map ;
     std::string forward ;
 
-    int HP = 10 ;
+    int HP = 100 ;
 
     bool nocontrol = false;
     bool Invincible = false,over_trans = false  ;

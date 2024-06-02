@@ -22,8 +22,8 @@ public:
         END,
     };
 
-    std::shared_ptr<Util::GameObject> black;
-    float scale_x = 3;
+
+
 
     State GetCurrentState() const { return m_CurrentState; }
 
@@ -33,11 +33,13 @@ public:
     void Update();
     void End(); // NOLINT(readability-convert-member-functions-to-static)
     void Trans() ;
+    float scale_x = 3;
     int hp = 10;
 private:
     void ValidTask();
 
 private:
+    std::shared_ptr<Util::GameObject> black;
     generate_enemy generate_enemy ;
     std::vector<std::shared_ptr<enemy>> all_enemy;//多形
     State m_CurrentState = State::gamestart;
