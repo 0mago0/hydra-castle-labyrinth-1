@@ -46,7 +46,7 @@ void grayguntower::ammo_bomb_judge(float h_x,float h_y , float m_x , float m_y,s
     float x = h_x - m_x ;
     float y = h_y - m_y ;
     dist = sqrt(x*x + y*y) ;
-     if(dist < 30 && m_hero->nocontrol == false ){
+     if(dist < 30 && m_hero->nocontrol == false && !m_hero->Invincible   ){
         m_hero->hero_state = "attacked" ;
         m_hero->HP -= 1 ;
         if (m_x > h_x){

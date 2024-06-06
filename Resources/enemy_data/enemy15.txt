@@ -1,0 +1,2 @@
+grayguntower 390 -270 L
+grayguntower -330 -30 R
