@@ -50,16 +50,16 @@ void App::Start() {
     m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/Main_01.mp3");
     m_bgm->SetVolume(5);
     m_bgm->Play();
-    generate_enemy.setpath("enemy3.txt");
+    generate_enemy.setpath("enemy28.txt");
     m_hero = std::make_shared<hero>(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png",RESOURCE_DIR"/hero/Rrun.png",RESOURCE_DIR"/hero/Rrun.png"});
     m_hero->SetPosition({0,-30});
     m_hero->hero_state = "on_ground" ;
     m_Root.AddChild(m_hero);
     m_hero->SetZIndex(80);
-    phy.set_data("map3.txt");
-    m_hero->map = "map3.txt" ;
-    m_map = std::make_shared<map>("p3.png","map3.txt");
-    m_map->map_number = 3 ;
+    phy.set_data("map28.txt");
+    m_hero->map = "map28.txt" ;
+    m_map = std::make_shared<map>("p28.png","map28.txt");
+    m_map->map_number = 28 ;
     m_Root.AddChild(m_map);
     m_CurrentState = State::UPDATE;
     m_tool = std::make_shared<heroattack>(std::vector<std::string>{RESOURCE_DIR"/attack_tool/sword1.png",RESOURCE_DIR"/attack_tool/sword2.png",RESOURCE_DIR"/attack_tool/sword3.png",RESOURCE_DIR"/attack_tool/sword4.png",RESOURCE_DIR"/attack_tool/sword5.png"});
@@ -77,7 +77,7 @@ void App::Start() {
 //    m_Root.RemoveChild(temp);
 }
 void App::Update() {
-
+   // LOG_INFO("{} {}" , m_hero->GetPosition()[0] , m_hero->GetPosition()[1]) ;
     scale_x = scale_x <= 0 ? 0 : scale_x - 0.025;
     black->m_Transform.scale = glm::vec2({10,scale_x});
     m_hero->run() ;

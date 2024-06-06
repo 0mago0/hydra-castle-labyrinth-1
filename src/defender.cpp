@@ -6,7 +6,6 @@
 defender::defender() {
     //m_ZIndex = -1 ;
 
-
     if(forward == "R"){
         SetImage(Rpath,150,true) ;
     }else{
@@ -37,15 +36,28 @@ void defender::move_even() {
     }
 }
 void defender::attack(std::shared_ptr<hero> m_hero) {
-    float x1,y1,x2,y2,x,y,distance ;
+    float x1,y1,x2,y2,x3,x,y,distance ;
     x1 = m_hero->GetPosition()[0] ;
     y1 = m_hero->GetPosition()[1] ;
     x2 = GetPosition()[0] ;
     y2 = GetPosition()[1] ;
     x = x1-x2 ;
     y = y1-y2 ;
+    bool sword_collision = false ;
     distance = sqrt(x*x + y*y) ;
-    if(distance < 30 && m_hero->HP > 0 && !m_hero->Invincible){
+    if(this-> forward == "R"){
+        x3 =  GetPosition()[0] + 40 ;
+        if(((x1-28 <= x3 && x1-28 >= GetPosition()[0]) ||  (x1+28 <= x3 && x1+28 >= GetPosition()[0])) && abs(y2-y1) < 5 ){
+            sword_collision = true  ;
+        }
+    }
+    if(this-> forward == "L"){
+        x3 =  GetPosition()[0] - 40 ;
+        if(((x1-28 >= x3 && x1-28 <= GetPosition()[0]) ||  (x1+28 >= x3 && x1+28 <= GetPosition()[0]))&& abs(y2-y1) < 5 ){
+            sword_collision = true  ;
+        }
+    }
+    if((distance < 50 || sword_collision ) && m_hero->HP > 0 && !m_hero->Invincible){
         m_hero->hero_state = "attacked" ;
         m_hero->HP -= 1 ;
         m_hero->Invincible = true  ;

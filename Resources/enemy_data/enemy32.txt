@@ -1,0 +1,2 @@
+grayguntower 390 -210 L
+defender 214 270

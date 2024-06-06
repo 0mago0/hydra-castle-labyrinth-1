@@ -90,6 +90,15 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
             all_enemy.push_back(Gas) ;
             m_Root.AddChild(temp) ;
         }
+        if(data[0] == "defender"){
+            std::shared_ptr<defender> Defender = std::make_shared<defender>() ;
+            Defender->SetPosition({std::stof(data[1]),std::stof(data[2])});
+            Defender->m_miscellaneous = std::make_shared<miscellaneous>("attack_miscellaneous");
+            auto temp = std::dynamic_pointer_cast<Util::GameObject>(Defender) ;
+            temp->AddChild(Defender->m_miscellaneous );
+            all_enemy.push_back(Defender) ;
+            m_Root.AddChild(temp) ;
+        }
     }
     ifs.close();
 

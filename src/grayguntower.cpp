@@ -32,7 +32,7 @@ void grayguntower::attack(std::shared_ptr<hero> m_hero) {
         Ammo->play() ;
         ammo_bomb_judge(m_hero->GetPosition()[0] , m_hero->GetPosition()[1] , Ammo->GetPosition()[0],Ammo->GetPosition()[1] , m_hero);
         ammo_bomb_judge(m_hero->GetPosition()[0] , m_hero->GetPosition()[1] , GetPosition()[0],GetPosition()[1] , m_hero);
-    }else if(distance <= 600){
+    }else if(distance <= 970){
         Ammo->SetPosition({Ammo->GetPosition()[0]-5*num,Ammo->GetPosition()[1]});
         distance += 5 ;
         ammo_bomb_judge(m_hero->GetPosition()[0] , m_hero->GetPosition()[1] , Ammo->GetPosition()[0],Ammo->GetPosition()[1] , m_hero);

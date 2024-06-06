@@ -1,0 +1,3 @@
+slime -90 30
+slime -30 -90
+slime 30 -210

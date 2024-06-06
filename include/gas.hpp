@@ -18,7 +18,7 @@ public:
 protected:
     float inter = 0;
     bool jp = false ,check_attack = false;
-
+    unsigned long attack_invert = 0 ;
     std::string forward = "R" ;
     std::vector<std::string> path = {RESOURCE_DIR"/enemy/gas1.png",RESOURCE_DIR"/enemy/gas2.png",RESOURCE_DIR"/enemy/gas3.png",RESOURCE_DIR"/enemy/gas4.png",RESOURCE_DIR"/enemy/gas5.png"} ;
 };

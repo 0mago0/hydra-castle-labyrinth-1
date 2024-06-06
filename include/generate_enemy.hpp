@@ -15,7 +15,9 @@
 #include "grayguntower.hpp"
 #include "miscellaneous.hpp"
 #include "gas.hpp"
+#include "defender.hpp"
 #include "enemy.hpp"
+
 #include <fstream>
 #include <iostream>
 #include "clsglobal.hpp"
