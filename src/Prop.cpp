@@ -38,10 +38,15 @@ void Prop::attack(std::shared_ptr<hero> m_hero) {
     if(HP == 1){
         // 在打第二格方塊的時候似乎會越界刪除錯誤index的值
         clsglobal::bricks_number[number] = 0 ;
-
         SetPosition({GetPosition()[0],GetPosition()[1]+30});
         HP = 1000 ;
-        SetImage({RESOURCE_DIR"/Prop/Prop_hp.png"},10,false);
+        if(treasure == "hp"){
+            SetImage({RESOURCE_DIR"/Prop/Prop_hp.png"},10,false);
+
+        }
+        if(treasure == "key"){
+            SetImage({RESOURCE_DIR"/Prop/Prop_key.png"},10,false);
+        }
     }
     if(HP > 500 ){
         float x1,y1,x2,y2,x,y,distance ;
@@ -52,8 +57,16 @@ void Prop::attack(std::shared_ptr<hero> m_hero) {
         x = x1-x2 ;
         y = y1-y2 ;
         distance = sqrt(x*x + y*y) ;
+
         if(distance < 30 && m_hero->HP > 0 && m_hero->nocontrol == false){
-            m_hero->HP = m_hero->HP + 1 > 10  ? 10 :m_hero->HP + 1;
+            if(treasure == "hp"){
+                if(m_hero->HP < 20){
+                    m_hero->HP = m_hero->HP + 1 ;
+                }
+            }
+            if(treasure == "key"){
+
+            }
             m_Visible = false ;
             SetPosition({-1000,-1000});
         }

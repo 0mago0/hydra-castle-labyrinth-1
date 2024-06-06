@@ -16,6 +16,7 @@ public:
     void attack(std::shared_ptr<hero> m_hero) override ;
     void move_even() override ;
     const std::vector<std::string> split(const std::string& str, const std::string& pattern) ;
+    std::string treasure = ""   ;
     int number ;
 
 };

@@ -5,7 +5,11 @@
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
 
-
+void App::setheart_grid(int hero_hp) {
+    float dx = (float)hero_hp/20 ;
+    heart->m_Transform.scale = {390*dx,1};
+    heart->m_Transform.translation = glm::vec2{-367+0.5*(390*dx-1), 327.5};
+}
 void App::gamestart(){
     LOG_TRACE("gamestart");
     auto startScreen = std::make_shared<Util::GameObject>();
@@ -21,6 +25,19 @@ void App::gamestart(){
 
 void App::Start() {
     LOG_TRACE("Start");
+    heart_gird = std::make_shared<Util::GameObject>();
+    heart_gird->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/heart/heart_gird.png")) ;
+    heart_gird->m_Transform.translation = glm::vec2{-220, 300};
+    heart_gird->SetZIndex(80);
+    m_Root.AddChild(heart_gird);
+
+    heart = std::make_shared<Util::GameObject>() ;
+    heart->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/heart/heart1.png"));
+    heart->m_Transform.translation = glm::vec2{-367, 327.5};
+    heart->m_Transform.scale = {390,1};
+    heart->m_Transform.translation = glm::vec2{-367+0.5*390-1, 327.5};
+    heart->SetZIndex(81);
+    m_Root.AddChild(heart);
 //開始遊戲後動畫
     black = std::make_shared<Util::GameObject>();
     black->SetDrawable(std::make_shared<Util::Image>(RESOURCE_DIR"/app/111.png"));
@@ -115,7 +132,7 @@ void App::Update() {
     if (m_hero->HP <= 0 && m_hero->over_trans) {
         m_CurrentState = State::GameOver ;  // 退出更新循环，游戏结束
     }
-
+    setheart_grid(m_hero->HP);
     m_Root.Update() ;
 
     //m_map.SetImage("p1.png") ;

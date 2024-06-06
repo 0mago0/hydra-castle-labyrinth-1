@@ -73,6 +73,8 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
             prob->m_miscellaneous = std::make_shared<miscellaneous>("attack_miscellaneous");
             std::vector<std::string> ss = split(this ->path, "enemy");
             ss =  split(ss[ss.size()-1], ".txt");
+            prob->treasure = data[6] ;
+            prob->treasure = data[6] ;
             prob->map_number =std::stoi(ss[0]);
             auto temp = std::dynamic_pointer_cast<Util::GameObject>(prob) ;
             temp->AddChild(prob->m_miscellaneous );

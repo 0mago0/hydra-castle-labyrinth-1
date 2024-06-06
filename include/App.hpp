@@ -21,7 +21,7 @@ public:
         UPDATE,
         END,
     };
-
+    void setheart_grid(int hero_hp) ;
 
 
 
@@ -39,6 +39,8 @@ private:
     void ValidTask();
 
 private:
+    std::shared_ptr<Util::GameObject> heart ;
+    std::shared_ptr<Util::GameObject> heart_gird;
     std::shared_ptr<Util::GameObject> black;
     generate_enemy generate_enemy ;
     std::vector<std::shared_ptr<enemy>> all_enemy;//多形
