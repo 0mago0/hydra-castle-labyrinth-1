@@ -50,6 +50,8 @@ add_executable(${PROJECT_NAME}
         include/gas.hpp
         src/clsglobal.cpp
         include/clsglobal.hpp
+        src/defender.cpp
+        include/defender.hpp
 )
 
 if(MSVC)
