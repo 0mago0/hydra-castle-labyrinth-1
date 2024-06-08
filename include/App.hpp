@@ -40,6 +40,7 @@ private:
     void ValidTask();
 
 private:
+    bool boss_state = false ;
     std::shared_ptr<Util::GameObject> heart ;
     std::shared_ptr<Util::GameObject> heart_gird;
     std::shared_ptr<Util::GameObject> black;

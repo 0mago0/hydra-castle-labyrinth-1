@@ -52,6 +52,8 @@ add_executable(${PROJECT_NAME}
         include/clsglobal.hpp
         src/defender.cpp
         include/defender.hpp
+        src/bird_boss.cpp
+        include/bird_boss.hpp
 )
 
 if(MSVC)

@@ -12,7 +12,7 @@
 
 class physics {
 public:
-
+    int boss_dy = 0 ;
     void in_sky_down();
     void set_data(const std::string& dataPath);
     void collision(int index, float &x , float Lx ,  float yy , float &y) ;

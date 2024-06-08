@@ -99,6 +99,15 @@ void generate_enemy:: generat(Util::Root &m_Root,std::vector<std::shared_ptr<ene
             all_enemy.push_back(Defender) ;
             m_Root.AddChild(temp) ;
         }
+        if(data[0] == "birdboss"){
+            std::shared_ptr<bird_boss> Bird_boss = std::make_shared<bird_boss>() ;
+            Bird_boss->SetPosition({std::stof(data[1]),std::stof(data[2])});
+            Bird_boss->m_miscellaneous = std::make_shared<miscellaneous>("attack_miscellaneous");
+            auto temp = std::dynamic_pointer_cast<Util::GameObject>(Bird_boss) ;
+            temp->AddChild(Bird_boss->m_miscellaneous );
+            all_enemy.push_back(Bird_boss) ;
+            m_Root.AddChild(temp) ;
+        }
     }
     ifs.close();
 

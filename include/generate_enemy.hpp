@@ -15,6 +15,7 @@
 #include "grayguntower.hpp"
 #include "miscellaneous.hpp"
 #include "gas.hpp"
+#include "bird_boss.hpp"
 #include "defender.hpp"
 #include "enemy.hpp"
 

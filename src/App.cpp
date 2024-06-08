@@ -102,17 +102,29 @@ void App::Update() {
     phy.state.push_back(m_hero->hero_state) ;
 
     for(size_t i = 0 ; i < all_enemy.size() ; i ++){
+        if(boss_state){
+            phy.object_position.push_back({all_enemy[i]->GetPosition()[0],all_enemy[i]->GetPosition()[1]-30}) ;
+            phy.state.push_back(all_enemy[i]->state) ;
+            phy.jump_total.push_back(0);
+        }else {
             phy.object_position.push_back(all_enemy[i]->GetPosition()) ;
             phy.state.push_back(all_enemy[i]->state) ;
             phy.jump_total.push_back(0);
+        }
     }
     phy.in_sky_down();
     m_hero->hero_state = phy.get_state(0);
     m_hero->SetPosition(phy.object_position[0]);
     for(size_t i = 0 ; i < all_enemy.size() ; i ++) {
         if(!(all_enemy[i]->enemy_name == "prob" && all_enemy[i]->HP >= 2 && all_enemy[i]->HP < 500)){
-            all_enemy[i]->state = phy.get_state(i + 1);
-            all_enemy[i]->SetPosition(phy.object_position[i + 1]);
+            if(boss_state){
+                all_enemy[i]->state = phy.get_state(i + 1);
+                all_enemy[i]->SetPosition({phy.object_position[i + 1][0],phy.object_position[i + 1][1]+30});
+            }else{
+                all_enemy[i]->state = phy.get_state(i + 1);
+                all_enemy[i]->SetPosition(phy.object_position[i + 1]);
+            }
+
         }
 
     }
@@ -133,10 +145,16 @@ void App::Update() {
     }
     setheart_grid(m_hero->HP);
     if(m_hero->enter_boss){
+        boss_state = true  ;
+        m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/Boss.mp3");
+        m_bgm->SetVolume(5);
+        m_bgm->Play();
         m_hero->enter_boss = false ;
-        m_hero->SetPosition({-150,-90}) ;
+        m_hero->SetPosition({-380,-150}) ;
         phy.set_data("map100.txt");
+        generate_enemy.setpath("enemy100.txt");
         m_hero->map = "map100.txt" ;
+        generate_enemy.generat(m_Root,all_enemy) ;
         m_map->map_number = 100 ;
         m_map->SetImage("p100.png" ) ;
     }
