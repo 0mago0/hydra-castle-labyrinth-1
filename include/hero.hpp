@@ -32,12 +32,12 @@ public:
     std::string forward ;
 
     int HP = 20 ;
-
     bool nocontrol = false;
     bool Invincible = false,over_trans = false  ;
-
+    bool key1= false ,key2= false ,key3 = false ;
+    bool two_jump_shoes = true ,enter_boss = false  ;
 private:
-    bool two_jump_shoes = true , two_jump = true ;
+    bool two_jump = true ;
     std::shared_ptr<Util::SFX> jump_sfx,attack_sfx;
     std::shared_ptr<Util::SFX> m_bgm;
     float move_ytotal ,move_xtotal ;

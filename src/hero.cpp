@@ -4,6 +4,7 @@
 #include "physics.hpp"
 #include "hero.hpp"
 void hero::run() {
+
     if(hero_state == "on_ground"){
         two_jump = true;
     }
@@ -100,6 +101,11 @@ void hero::run() {
         if(hero_state == "climb_ladder" && !physics.climb_ladder(x,y) ){
             hero_state = "sky_down" ;
         }
+    }
+    if (Util::Input::IsKeyPressed(Util::Keycode::E)) {
+       if(physics.enter_boss(x,y)){
+           enter_boss = true ;
+       }
     }
     if (Util::Input::IsKeyPressed(Util::Keycode::W)) {
         physics.set_data(map);

@@ -1,0 +1,5 @@
+slime -270 -210
+slime -90 -210
+slime 90 -210
+defender -40 30
+prob 390 210 14 2 1 boots

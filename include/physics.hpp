@@ -9,6 +9,7 @@
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
 #include "clsglobal.hpp"
+
 class physics {
 public:
 
@@ -17,6 +18,7 @@ public:
     void collision(int index, float &x , float Lx ,  float yy , float &y) ;
     bool climb_ladder(float x , float y) ;
     bool judge_onground(float x , float y,float topy) ;
+    bool enter_boss(float x , float y ) ;
     std::string get_state(int index);
     std::vector<std::string> state ;
     std::vector<glm::vec2> object_position ;

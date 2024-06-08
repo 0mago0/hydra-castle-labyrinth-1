@@ -1,2 +1,3 @@
 grayguntower -400 34 R
 grayguntower 390 -30 L
+prob -30 150 6 4 1 key3

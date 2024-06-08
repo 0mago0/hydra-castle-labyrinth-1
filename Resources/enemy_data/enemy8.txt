@@ -1,0 +1,5 @@
+prob -210 210 4 2 1 key1
+prob 390 210 14 2 2 hp
+defender 80 90
+defender 80 -30
+defender -200 -150

@@ -61,10 +61,15 @@ int main(int, char**) {
                 app = std::make_shared<App>();
                 app->Start();
                 break;
+            case App::State::BOSS:
+                app->Boss();
+                break ;
             case App::State::END:
                 app->End();
                 context->SetExit(true);
                 break;
+
+
         }
         context->Update();
     }

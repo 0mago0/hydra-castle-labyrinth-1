@@ -30,7 +30,7 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
             already_attack = true;
             for(int i = all_enemy.size()-1 ; i >=0 ; i--){
                 float x1,y1,x2,y2,X,Y ;
-                x1 = all_enemy[i]->GetPosition()[0] + 10;
+                x1 = all_enemy[i]->GetPosition()[0] ;
                 y1 = all_enemy[i]->GetPosition()[1] ;
                 x2 = this->GetPosition()[0] ;
                 y2 = this->GetPosition()[1] ;

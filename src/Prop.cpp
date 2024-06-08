@@ -36,7 +36,6 @@ Prop::Prop() {
 
 void Prop::attack(std::shared_ptr<hero> m_hero) {
     if(HP == 1){
-        // 在打第二格方塊的時候似乎會越界刪除錯誤index的值
         clsglobal::bricks_number[number] = 0 ;
         SetPosition({GetPosition()[0],GetPosition()[1]+30});
         HP = 1000 ;
@@ -44,8 +43,17 @@ void Prop::attack(std::shared_ptr<hero> m_hero) {
             SetImage({RESOURCE_DIR"/Prop/Prop_hp.png"},10,false);
 
         }
-        if(treasure == "key"){
+        if(treasure == "key1"){
             SetImage({RESOURCE_DIR"/Prop/Prop_key.png"},10,false);
+        }
+        if(treasure == "key2"){
+            SetImage({RESOURCE_DIR"/Prop/Prop_key2.png"},10,false);
+        }
+        if(treasure == "key3"){
+            SetImage({RESOURCE_DIR"/Prop/Prop_key3.png"},10,false);
+        }
+        if(treasure == "boots"){
+            SetImage({RESOURCE_DIR"/Prop/Prob_boots.png"},10,false);
         }
     }
     if(HP > 500 ){
@@ -65,7 +73,16 @@ void Prop::attack(std::shared_ptr<hero> m_hero) {
                 }
             }
             if(treasure == "key"){
-
+                m_hero->key1 = true ;
+            }
+            if(treasure == "key2") {
+                m_hero->key2 = true ;
+            }
+            if(treasure == "key3"){
+                m_hero->key3 = true ;
+            }
+            if(treasure == "boots"){
+                m_hero->two_jump_shoes = true ;
             }
             m_Visible = false ;
             SetPosition({-1000,-1000});

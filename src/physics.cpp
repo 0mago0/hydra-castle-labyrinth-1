@@ -41,6 +41,7 @@ void physics::collision(int index,float &x , float Lx ,  float yy , float &y){
     }
 }
 void  physics::in_sky_down() {
+
     for(int i = 0 ; i < clsglobal::bricks_x.size();i++){
         data[clsglobal::bricks_x[i]][clsglobal::bricks_y[i]] = clsglobal::bricks_number[i] ;
     }
@@ -86,6 +87,13 @@ bool physics::climb_ladder(float x , float y){
         return true ;
     }
     return false ;
+}
+bool physics::enter_boss(float x, float y) {
+    if(data[int(x)][int(y-1)] == -5){
+        return  true ;
+    }else{
+        return false ;
+    }
 }
 bool physics::judge_onground(float x, float y,float topy) {
     if(data[int(x)][int(y)] == 0 && data[int(x)][int(topy)] == 0){

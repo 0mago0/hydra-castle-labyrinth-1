@@ -1,2 +1,4 @@
 defender -216 -210
 defender 208 150
+prob -390 -210 1 9 1 hp
+prob -330 -210 2 9 2 hp

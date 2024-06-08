@@ -1,0 +1,3 @@
+defender -330 30
+slime -30 150
+slime 150 150

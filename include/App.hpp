@@ -19,6 +19,7 @@ public:
         START,
         TRANS,
         UPDATE,
+        BOSS,
         END,
     };
     void setheart_grid(int hero_hp) ;
@@ -26,7 +27,7 @@ public:
 
 
     State GetCurrentState() const { return m_CurrentState; }
-
+    void  Boss();
     void GameOver();
     void gamestart();
     void Start();
