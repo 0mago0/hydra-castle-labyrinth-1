@@ -76,9 +76,9 @@ void bird_boss::run() {
         if(temp->GetCurrentFrameIndex() == 9 && y_total <= 180 ){
             state = "one_jump" ;
             if(forward == "R" && prevent_out_border()){
-                SetPosition({GetPosition()[0]+1,GetPosition()[1]+5}) ;
+                SetPosition({GetPosition()[0]+4,GetPosition()[1]+5}) ;
             }else if(forward == "L" && prevent_out_border()){
-                SetPosition({GetPosition()[0]-2,GetPosition()[1]+5}) ;
+                SetPosition({GetPosition()[0]-4,GetPosition()[1]+5}) ;
             }
             y_total += 5 ;
         }

@@ -6,3 +6,4 @@
 std::vector<int> clsglobal::bricks_x = {};
 std::vector<int> clsglobal::bricks_y = {};
 std::vector<int> clsglobal::bricks_number = {};
+bool clsglobal::judge_end = false ;

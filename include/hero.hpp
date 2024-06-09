@@ -35,7 +35,7 @@ public:
     bool nocontrol = false;
     bool Invincible = false,over_trans = false  ;
     bool key1= false ,key2= false ,key3 = false ;
-    bool two_jump_shoes = true ,enter_boss = false  ;
+    bool two_jump_shoes = false ,enter_boss = false  ;
 private:
     bool two_jump = true ;
     std::shared_ptr<Util::SFX> jump_sfx,attack_sfx;

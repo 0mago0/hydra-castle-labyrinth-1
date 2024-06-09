@@ -50,16 +50,16 @@ void App::Start() {
     m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/Main_01.mp3");
     m_bgm->SetVolume(5);
     m_bgm->Play();
-    generate_enemy.setpath("enemy17.txt");
+    generate_enemy.setpath("enemy20.txt");
     m_hero = std::make_shared<hero>(std::vector<std::string>{RESOURCE_DIR"/hero/stay.png",RESOURCE_DIR"/hero/Rrun.png",RESOURCE_DIR"/hero/Rrun.png"});
-    m_hero->SetPosition({-394,90});
+    m_hero->SetPosition({-120,-150});
     m_hero->hero_state = "on_ground" ;
     m_Root.AddChild(m_hero);
     m_hero->SetZIndex(80);
-    phy.set_data("map17.txt");
-    m_hero->map = "map17.txt" ;
-    m_map = std::make_shared<map>("p17.png","map17.txt");
-    m_map->map_number = 17 ;
+    phy.set_data("map20.txt");
+    m_hero->map = "map20.txt" ;
+    m_map = std::make_shared<map>("p20.png","map20.txt");
+    m_map->map_number = 20 ;
     m_Root.AddChild(m_map);
     m_CurrentState = State::UPDATE;
     m_tool = std::make_shared<heroattack>(std::vector<std::string>{RESOURCE_DIR"/attack_tool/sword1.png",RESOURCE_DIR"/attack_tool/sword2.png",RESOURCE_DIR"/attack_tool/sword3.png",RESOURCE_DIR"/attack_tool/sword4.png",RESOURCE_DIR"/attack_tool/sword5.png"});
@@ -88,6 +88,12 @@ void App::Update() {
     for(int i = all_enemy.size()-1 ; i >=0 ; i--){
         if(all_enemy[i]->HP <= 0 && all_enemy[i]->hp_state != "die"){
             all_enemy[i]->bomb();
+            if(boss_state){
+                m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/clear.mp3");
+                m_bgm->SetVolume(5);
+                m_bgm->Play(1);
+
+            }
             continue;
         }else if(all_enemy[i]->hp_state == "die" && all_enemy[i]->Getplaystate() == Util::Animation::State::ENDED){
             m_Root.RemoveChild(all_enemy[i]) ;
@@ -141,6 +147,9 @@ void App::Update() {
         m_CurrentState = State::END ;
     }
     if (m_hero->HP <= 0 && m_hero->over_trans) {
+        m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/Gameover.mp3");
+        m_bgm->SetVolume(5);
+        m_bgm->Play();
         m_CurrentState = State::GameOver ;  // 退出更新循环，游戏结束
     }
     setheart_grid(m_hero->HP);
@@ -182,7 +191,11 @@ void App::GameOver() {
     auto gameOverScreen = std::make_shared<Util::Image>(RESOURCE_DIR"/app/game_over_background.png");
     gameOverScreen->Draw({{0, 0}, 0, {1, 1}}, 0);
 
+
     if (Util::Input::IsKeyDown(Util::Keycode::SPACE)) {
+        m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/Main_01.mp3");
+        m_bgm->SetVolume(5);
+        m_bgm->Play();
         m_CurrentState = State::RESTART ;
     }
     if (Util::Input::IsKeyDown(Util::Keycode::ESCAPE)) {

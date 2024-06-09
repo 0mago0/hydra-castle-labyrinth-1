@@ -9,7 +9,7 @@
 class clsglobal {
 public:
     static std::vector<int> bricks_x,bricks_y,bricks_number;
-
+    static bool  judge_end  ;
 };
 
 
