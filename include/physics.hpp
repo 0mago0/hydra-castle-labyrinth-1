@@ -19,6 +19,7 @@ public:
     bool climb_ladder(float x , float y) ;
     bool judge_onground(float x , float y,float topy) ;
     bool enter_boss(float x , float y ) ;
+    int boss_dx ;
     std::string get_state(int index);
     std::vector<std::string> state ;
     std::vector<glm::vec2> object_position ;

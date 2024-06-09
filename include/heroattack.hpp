@@ -25,6 +25,7 @@ public:
     void attack(std::string forward,std::vector<std::shared_ptr<enemy>> &all_enemy,Util::Root &m_Root,bool m_hero_attacked) ;
     //void Draw(const Util::Transform &transform, const float zIndex) override;
     void renw_position(std::string forward) ;
+    bool boss_state = false ;
 private:
     std::shared_ptr<Util::SFX> m_sfx ; 
     bool already = true ,already_attack = false;

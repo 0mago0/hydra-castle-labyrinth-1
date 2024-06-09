@@ -36,7 +36,11 @@ void heroattack::attack(std::string forward,std::vector<std::shared_ptr<enemy>> 
                 y2 = this->GetPosition()[1] ;
                 X = abs(x1-x2);
                 Y = abs(y1-y2) ;
-                if(sqrt(X*X + Y * Y) <= 50 ){
+                int dx = 0 ;
+                if(boss_state){
+                    dx = 30 ;
+                }
+                if(sqrt(X*X + Y * Y) <= 50 + dx ){
                     m_sfx = std::make_shared<Util::SFX>(RESOURCE_DIR"/Sound effects/ok_attack.wav");
                     m_sfx->SetVolume(5);
                     m_sfx->Play(0);

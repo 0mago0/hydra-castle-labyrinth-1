@@ -146,6 +146,7 @@ void App::Update() {
     setheart_grid(m_hero->HP);
     if(m_hero->enter_boss){
         boss_state = true  ;
+        m_tool->boss_state = true  ;
         m_bgm = std::make_shared<Util::BGM>(RESOURCE_DIR"/bgm/Boss.mp3");
         m_bgm->SetVolume(5);
         m_bgm->Play();
