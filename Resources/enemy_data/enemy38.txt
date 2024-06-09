@@ -1,0 +1,3 @@
+prob 30 -210 8 9 1 hp
+prob 90 -210 9 9 2 hp
+defender 210 -210

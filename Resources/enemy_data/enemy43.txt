@@ -1,0 +1,3 @@
+grayguntower 390 30 L
+grayguntower -390 90 R
+grayguntower -390 -90 R

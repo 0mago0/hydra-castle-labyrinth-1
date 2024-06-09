@@ -103,7 +103,7 @@ void hero::run() {
         }
     }
     if (Util::Input::IsKeyPressed(Util::Keycode::E)) {
-       if(physics.enter_boss(x,y)){
+       if(physics.enter_boss(x,y) && key1 && key2 && key3){
            enter_boss = true ;
        }
     }
